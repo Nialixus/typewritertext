@@ -1,31 +1,15 @@
-<!-- 
-This README describes the package. If you publish this package to pub.dev,
-this README's contents appear on the landing page for your package.
+# Type Writer Text
+> Type writer animation for Flutter.
 
-For information about how to write a good package README, see the guide for
-[writing package pages](https://dart.dev/guides/libraries/writing-package-pages). 
-
-For general information about developing packages, see the Dart guide for
-[creating packages](https://dart.dev/guides/libraries/create-library-packages)
-and the Flutter guide for
-[developing packages and plugins](https://flutter.dev/developing-packages). 
--->
-
-Type Writer Animated Text for Flutter
-
-## Features
-
-TODO: List what your package can do. Maybe include images, gifs, or videos.
-
-## Getting started
-
-TODO: List prerequisites and provide or point to information on how to
-start using the package.
+## Preview
+![screen-capture-_1_](https://user-images.githubusercontent.com/45191605/162557654-6e98d7be-e198-4089-bc13-6b52f7e4a6e2.gif)
 
 ## Usage
+`text` : required `Text()` widget.<br>
+`duration` : required `Duration()`.<br>
+`maintainSize` : to maintain occupied size of final text. default `true`.<br>
+`play` : to switch animation state. default `true`.
 
-TODO: Include short and useful examples for package users. Add longer examples
-to `/example` folder. 
 
 ```dart
 const TypeWriterText(text: Text('text'), duration: Duration(milliseconds: 750));
