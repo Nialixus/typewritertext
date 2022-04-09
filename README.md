@@ -13,19 +13,10 @@ and the Flutter guide for
 
 Type Writer Animated Text for Flutter
 
-## Features
-
-TODO: List what your package can do. Maybe include images, gifs, or videos.
-
-## Getting started
-
-TODO: List prerequisites and provide or point to information on how to
-start using the package.
+## Preview
+![screen-capture-_1_](https://user-images.githubusercontent.com/45191605/162557654-6e98d7be-e198-4089-bc13-6b52f7e4a6e2.gif)
 
 ## Usage
-
-TODO: Include short and useful examples for package users. Add longer examples
-to `/example` folder. 
 
 ```dart
 const TypeWriterText(text: Text('text'), duration: Duration(milliseconds: 750));
