@@ -11,7 +11,7 @@ and the Flutter guide for
 [developing packages and plugins](https://flutter.dev/developing-packages). 
 -->
 
-#Type Writer Animated Text for Flutter
+Type Writer Animated Text for Flutter
 
 ## Features
 
