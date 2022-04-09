@@ -1,5 +1,5 @@
 # Type Writer Text
-A simple text writer text animation for flutter. Supports iOS, Android, web, Windows, macOS, and Linux.
+A simple typewriter text animation for flutter. Supports iOS, Android, web, Windows, macOS, and Linux.
 
 ## Preview
 ![screen-capture-_1_](https://user-images.githubusercontent.com/45191605/162557654-6e98d7be-e198-4089-bc13-6b52f7e4a6e2.gif)
