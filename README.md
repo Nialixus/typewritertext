@@ -8,9 +8,13 @@ Go to <a href='https://pub.dev/packages/typewritertext/install'><img width='80px
 ## Usage
 * `text`, uses `Text()` widget.<br>
 * `duration`, uses to define how fast text changes.<br>
-* `maintainSize`, to maintain occupied size of final text, default is `true`.<br>
-* `play`, to set whether animation should play or not, default is `true`.
+* `alignment`, Align the `text` within the occupied size.<br>
+* `maintainSize`, to maintain occupied size of final text. Default value is `true`.<br>
+* `play`, to set whether animation should play or not. Default value is `true`.
 
 ```dart
-const TypeWriterText(text: Text('text'), duration: Duration(milliseconds: 750));
+const TypeWriterText(
+    text: Text('text'), 
+    duration: Duration(milliseconds: 750),
+);
 ``` 
