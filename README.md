@@ -8,15 +8,14 @@ How to install is <a href='https://pub.dev/packages/typewritertext/install'>here
 ## Documentation
 The documentation is <a href='https://pub.dev/documentation/typewritertext/latest/typewritertext/typewritertext-library.html'>here</a>.
 ## Usage
-* `text`, uses `Text()` widget.<br>
-* `duration`, uses to define how fast text changes.<br>
-* `alignment`, Align the `text` within the occupied size.<br>
-* `maintainSize`, to maintain occupied size of final text. Default value is `true`.<br>
-* `play`, to set whether animation should play or not. Default value is `true`.
-
 ```dart
 const TypeWriterText(
     text: Text('text'), 
     duration: Duration(milliseconds: 50),
 );
 ``` 
+* `text`, uses `Text()` widget.<br>
+* `duration`, uses to define how fast text changes.<br>
+* `alignment`, Align the `text` within the occupied size.<br>
+* `maintainSize`, to maintain occupied size of final text. Default value is `true`.<br>
+* `play`, to set whether animation should play or not. Default value is `true`.
