@@ -1,3 +1,4 @@
+///Library for [TypeWriterText].
 library typewritertext;
 
 import 'dart:async';
