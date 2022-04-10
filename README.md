@@ -29,3 +29,5 @@ const TypeWriterText(
 * `play`, to set whether animation should play or not. Default value is `true`.
 
 Full documentation <a href="https://pub.dev/documentation/typewritertext/latest/typewritertext/typewritertext-library.html">here</a>.
+## Example
+* <a href="https://github.com/Nialixus/typewritertext/blob/master/example/lib/main.dart">typewritertext/example/lib/main.dart</a>
