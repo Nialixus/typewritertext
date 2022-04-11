@@ -1,4 +1,6 @@
 # Type Writer Text
+<a href='https://pub.dev/packages/typewritertext'><img src='https://img.shields.io/pub/v/typewritertext.svg?logo=flutter&color=blue&style=flat-square'/></a>\
+\
 A simple typewriter text animation for flutter. Supports iOS, Android, web, Windows, macOS, and Linux.
 
 ## Preview
@@ -22,10 +24,10 @@ const TypeWriterText(
 );
 ``` 
 ## Documentation
-* `text`, uses `Text()` widget.<br>
-* `duration`, uses to define how fast text changes.<br>
-* `alignment`, Align the `text` within the occupied size.<br>
-* `maintainSize`, to maintain occupied size of final text. Default value is `true`.<br>
+* `text`, uses `Text()` widget.
+* `duration`, uses to define how fast text changes.
+* `alignment`, Align the `text` within the occupied size.
+* `maintainSize`, to maintain occupied size of final text. Default value is `true`.
 * `play`, to set whether animation should play or not. Default value is `true`.
 
 Full documentation <a href="https://pub.dev/documentation/typewritertext/latest/typewritertext/typewritertext-library.html">here</a>.
