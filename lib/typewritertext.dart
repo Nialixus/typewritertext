@@ -1,4 +1,6 @@
-///Library for [TypeWriterText].
+///Library for [TypeWriterText] and [TypeWriterTextState].
+///
+///Uses to make typewriter animation text.
 library typewritertext;
 
 import 'dart:async';
@@ -123,7 +125,9 @@ class TypeWriterTextState with ChangeNotifier {
       text.data!.characters.string.substring(0, x + 1)
   ];
 
-  ///[String] that displayed in [TypeWriterText] animation.
+  ///A [String] that displayed in [TypeWriterText] animation.
+  ///
+  ///Default value is `''`.
   String textContent = '';
 
   ///A void function to start typewriting animation.

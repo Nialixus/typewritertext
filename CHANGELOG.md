@@ -5,3 +5,7 @@
 ## 1.0.0
 
 - Add alignment and documentation.
+
+## 1.1.0
+
+- Change documentation.
