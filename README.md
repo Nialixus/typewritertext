@@ -7,7 +7,7 @@ A simple typewriter text animation for flutter. Supports iOS, Android, web, Wind
 Add this line to your pubspec.yaml.
 ```yaml
 dependencies:
-  typewritertext: ^1.0.0
+  typewritertext: ^1.1.0
 ```
 ## Usage
 First, import the typewriter package.
