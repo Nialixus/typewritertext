@@ -3,7 +3,7 @@ import 'package:typewritertext/typewritertext.dart';
 
 void main() {
   runApp(MaterialApp(
-      title: 'Flutter Demo',
+      title: 'Typewritertext Demo',
       debugShowCheckedModeBanner: false,
       theme: ThemeData(primarySwatch: Colors.blue),
       home: const MyApp()));
@@ -15,9 +15,7 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        body: Container(
-      width: MediaQuery.of(context).size.width,
-      height: MediaQuery.of(context).size.height,
+        body: Padding(
       padding: EdgeInsets.all(MediaQuery.of(context).size.width * 0.1),
       child: const TypeWriterText(
         text: Text(
