@@ -10,6 +10,6 @@
 
 - Change documentation.
 
-# 1.2.0
+## 1.2.0
 
 - Hide Library
