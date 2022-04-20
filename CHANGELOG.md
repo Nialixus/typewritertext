@@ -9,3 +9,7 @@
 ## 1.1.0
 
 - Change documentation.
+
+# 1.2.0
+
+- Hide Library
