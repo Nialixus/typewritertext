@@ -2,7 +2,7 @@
 
 <a href='https://pub.dev/packages/typewritertext'><img src='https://img.shields.io/pub/v/typewritertext.svg?logo=flutter&color=blue&style=flat-square'/></a>\
 \
-A simple typewriter text animation wrapper for flutter. Supports iOS, Android, web, Windows, macOS, and Linux.
+A simple typewriter text animation wrapper for flutter, supports iOS, Android, web, Windows, macOS, and Linux.
 
 ## Preview
 
@@ -14,7 +14,7 @@ Add this line to your pubspec.yaml.
 
 ```yaml
 dependencies:
-  typewritertext: ^1.2.0
+  typewritertext: ^1.3.0
 ```
 
 ## Usage
@@ -35,12 +35,14 @@ const TypeWriterText(
 ```
 
 ## Documentation
-
-- `text`, uses `Text()` widget.
-- `duration`, uses to define how fast text changes.
-- `alignment`, Align the `text` within the occupied size.
-- `maintainSize`, to maintain occupied size of final text. Default value is `true`.
-- `play`, to set whether animation should play or not. Default value is `true`.
+<table>
+  <tr><td><b>Property</b></td><td><b>Purpose</b></td></tr>
+  <tr><td><b><i>text<i></b></td><td>Use widget <a href='https://api.flutter.dev/flutter/widgets/Text-class.html'>Text()</a>.</td></tr>
+    <tr><td><b><i>duration<i></b></td><td>Used to determine how fast text changes.</td></tr>
+      <tr><td><b><i>alignment<i></b></td><td>Align the <b><i>text</i></b> within the occupied size.</td></tr>
+    <tr><td><b><i>maintainSize<i></b></td><td>Used to maintain occupied size of final text. Default value is <b><i>true</i></b>.</td></tr>
+    <tr><td><b><i>play<i></b></td><td>To set whether animation should play or not. Default value is <b><i>true</i></b>.</td></tr>
+</table>
 
 Full documentation <a href="https://pub.dev/documentation/typewritertext/latest/typewritertext/typewritertext-library.html">here</a>.
 
