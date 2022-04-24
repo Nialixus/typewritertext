@@ -28,3 +28,5 @@
 .packages
 build/
 example/android/
+example/analysis_option.yaml
+example/README.md
