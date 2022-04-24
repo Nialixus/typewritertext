@@ -7,6 +7,8 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import '../src/typewritertextstate.dart';
 
+export 'package:typewritertext/typewritertext.dart' show TypeWriterText;
+
 ///A simple typewriter text animation wrapper for flutter.
 class TypeWriterText extends StatelessWidget {
   ///Create a wrapper widget to animate [Text] with typewriter animation.
@@ -22,8 +24,8 @@ class TypeWriterText extends StatelessWidget {
       required this.text,
       required this.duration,
       this.alignment,
-      this.maintainSize,
-      this.play})
+      this.maintainSize = true,
+      this.play = true})
       : super(key: key);
 
   ///Uses [Text] widget as it's value.
@@ -47,66 +49,60 @@ class TypeWriterText extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    if (play ?? true == false) {
+    if (play == false) {
       ///If play is `false`, return original [Text].
       return text;
     } else {
       ///If play is `true`, return animated text.
-      return ChangeNotifierProvider<TypeWriterTextState>.value(
-          value: TypeWriterTextState(text: text),
+      return ChangeNotifierProvider<TypeWriterTextState>(
+          create: (context) => TypeWriterTextState(text: text),
           builder: (animatedContext, animatedChild) {
-            ///Calling animate on `build()`.
-            Provider.of<TypeWriterTextState>(animatedContext, listen: false)
-                .animate(duration);
+            animatedContext.read<TypeWriterTextState>().animate(duration);
+            return animatedChild!;
+          },
+          child: LayoutBuilder(builder: (_, constraints) {
+            ///Uses as a dummy final text so we can get the final width and height.
+            TextPainter textPainter = TextPainter(
+                locale: text.locale,
+                maxLines: text.maxLines,
+                strutStyle: text.strutStyle,
+                text: TextSpan(
+                    text: text.data!,
+                    style: text.style,
+                    locale: text.locale,
+                    semanticsLabel: text.semanticsLabel),
+                textAlign: text.textAlign ?? TextAlign.start,
+                textDirection: text.textDirection ?? TextDirection.ltr,
+                textHeightBehavior: text.textHeightBehavior,
+                textScaleFactor: text.textScaleFactor ?? 1.0,
+                textWidthBasis: text.textWidthBasis ?? TextWidthBasis.parent)
+              ..layout(
+                  maxWidth: constraints.maxWidth,
+                  minWidth: constraints.minWidth);
 
-            ///Using [LayoutBuilder] to measure final occupied size of [Text].
-            return LayoutBuilder(builder: (builderContext, builderConstraints) {
-              ///Uses as a dummy final text so we can get the final width and height.
-              TextPainter textPainter = TextPainter(
-                  locale: text.locale,
-                  maxLines: text.maxLines,
-                  strutStyle: text.strutStyle,
-                  text: TextSpan(
-                      text: text.data!,
-                      style: text.style,
-                      locale: text.locale,
-                      semanticsLabel: text.semanticsLabel),
-                  textAlign: text.textAlign ?? TextAlign.start,
-                  textDirection: text.textDirection ?? TextDirection.ltr,
-                  textHeightBehavior: text.textHeightBehavior,
-                  textScaleFactor: text.textScaleFactor ?? 1.0,
-                  textWidthBasis: text.textWidthBasis ?? TextWidthBasis.parent)
-                ..layout(
-                    maxWidth: builderConstraints.maxWidth,
-                    minWidth: builderConstraints.minWidth);
-
-              ///Uses to set `width`, `height` and `alignment`.
-              return Container(
-                  alignment: alignment,
-                  width:
-                      (maintainSize ?? true) == true ? textPainter.width : null,
-                  height: (maintainSize ?? true) == true
-                      ? textPainter.height
-                      : null,
-                  child: Consumer<TypeWriterTextState>(
-                      builder: (context, value, child) => Text(
-                            value.textContent,
-                            key: text.key,
-                            locale: text.locale,
-                            maxLines: text.maxLines,
-                            overflow: text.overflow,
-                            semanticsLabel: text.semanticsLabel,
-                            softWrap: text.softWrap,
-                            strutStyle: text.strutStyle,
-                            style: text.style,
-                            textAlign: text.textAlign,
-                            textDirection: text.textDirection,
-                            textHeightBehavior: text.textHeightBehavior,
-                            textScaleFactor: text.textScaleFactor,
-                            textWidthBasis: text.textWidthBasis,
-                          )));
-            });
-          });
+            ///Uses to set `width`, `height` and `alignment`.
+            return Container(
+                alignment: alignment,
+                width: maintainSize == true ? textPainter.width : null,
+                height: maintainSize == true ? textPainter.height : null,
+                child: Consumer<TypeWriterTextState>(
+                    builder: (_, value, ___) => Text(
+                          value.textContent,
+                          key: text.key,
+                          locale: text.locale,
+                          maxLines: text.maxLines,
+                          overflow: text.overflow,
+                          semanticsLabel: text.semanticsLabel,
+                          softWrap: text.softWrap,
+                          strutStyle: text.strutStyle,
+                          style: text.style,
+                          textAlign: text.textAlign,
+                          textDirection: text.textDirection,
+                          textHeightBehavior: text.textHeightBehavior,
+                          textScaleFactor: text.textScaleFactor,
+                          textWidthBasis: text.textWidthBasis,
+                        )));
+          }));
     }
   }
 }

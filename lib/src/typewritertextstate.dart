@@ -12,10 +12,10 @@ class TypeWriterTextState with ChangeNotifier {
   final Text text;
 
   ///A generated list of [String] from [text].
-  late List<String> textList = [
-    for (int x = 0; x < text.data!.characters.length; x++)
-      text.data!.characters.string.substring(0, x + 1)
-  ];
+  List<String> get textList => [
+        for (int x = 0; x < text.data!.characters.length; x++)
+          text.data!.characters.string.substring(0, x + 1)
+      ];
 
   ///A [String] that displayed in [TypeWriterText] animation.
   ///
@@ -25,18 +25,20 @@ class TypeWriterTextState with ChangeNotifier {
   ///A void function to start typewriting animation.
   void animate(Duration duration) async {
     ///Set the first displayed [String] from [textList].
-    textContent = textList[0];
+    if (textList.isNotEmpty) {
+      textContent = textList.first;
 
-    ///Setting the displayed [String] from time to time.
-    Timer.periodic(duration, (timer) {
-      if (timer.tick >= textList.length) {
-        ///End the animation.
-        timer.cancel();
-      } else {
-        ///Set the rest [String] from [textList] to be displayed.
-        textContent = textList[timer.tick];
-        notifyListeners();
-      }
-    });
+      ///Setting the displayed [String] from time to time.
+      Timer.periodic(duration, (timer) {
+        if (timer.tick >= textList.length) {
+          ///End the animation.
+          timer.cancel();
+        } else {
+          ///Set the rest [String] from [textList] to be displayed.
+          textContent = textList[timer.tick];
+          notifyListeners();
+        }
+      });
+    }
   }
 }

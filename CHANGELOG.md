@@ -12,4 +12,8 @@
 
 ## 1.2.0
 
-- Hide Library
+- Hide Library.
+
+## 1.3.0
+
+- Fix empty string case.
