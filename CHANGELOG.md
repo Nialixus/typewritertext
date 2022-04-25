@@ -17,3 +17,7 @@
 ## 1.3.0
 
 - Fix empty string case.
+
+## 1.4.0
+
+- Fix state used after being disposed.

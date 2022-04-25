@@ -41,4 +41,22 @@ class TypeWriterTextState with ChangeNotifier {
       });
     }
   }
+
+  /// Dispose detector.
+  bool disposed = false;
+
+  /// If dispose called then dispose is true.
+  @override
+  void dispose() {
+    disposed = true;
+    super.dispose();
+  }
+
+  /// If notify called while dipose is true then call super notify.
+  @override
+  void notifyListeners() {
+    if (!disposed) {
+      super.notifyListeners();
+    }
+  }
 }
