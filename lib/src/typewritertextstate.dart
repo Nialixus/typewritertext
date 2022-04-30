@@ -1,5 +1,4 @@
 import 'dart:async';
-import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 
 export '../src/typewritertextstate.dart' hide TypeWriterTextState;
@@ -30,21 +29,17 @@ class TypeWriterTextState with ChangeNotifier {
       textContent = textList.first;
 
       ///Setting the displayed [String] from time to time.
-      compute<Duration, void>(setText, duration);
+      Timer.periodic(duration, (timer) {
+        if (timer.tick >= textList.length) {
+          ///End the animation.
+          timer.cancel();
+        } else {
+          ///Set the rest [String] from [textList] to be displayed.
+          textContent = textList[timer.tick];
+          notifyListeners();
+        }
+      });
     }
-  }
-
-  void setText(Duration duration) {
-    Timer.periodic(duration, (timer) {
-      if (timer.tick >= textList.length) {
-        ///End the animation.
-        timer.cancel();
-      } else {
-        ///Set the rest [String] from [textList] to be displayed.
-        textContent = textList[timer.tick];
-        notifyListeners();
-      }
-    });
   }
 
   /// Dispose detector.
