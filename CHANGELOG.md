@@ -21,3 +21,7 @@
 ## 1.4.0
 
 - Fix state used after being disposed.
+
+## 1.5.0
+
+- Remove provider

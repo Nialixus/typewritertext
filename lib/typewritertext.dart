@@ -3,14 +3,11 @@
 ///Uses to make typewriter animation text.
 library typewritertext;
 
+import 'dart:async';
 import 'package:flutter/material.dart';
-import 'package:provider/provider.dart';
-import '../src/typewritertextstate.dart';
-
-export 'package:typewritertext/typewritertext.dart' show TypeWriterText;
 
 ///A simple typewriter text animation wrapper for flutter.
-class TypeWriterText extends StatelessWidget {
+class TypeWriterText extends StatefulWidget {
   ///Create a wrapper widget to animate [Text] with typewriter animation.
   ///
   ///```dart
@@ -48,61 +45,86 @@ class TypeWriterText extends StatelessWidget {
   final bool? play;
 
   @override
+  State<TypeWriterText> createState() => _TypeWriterTextState();
+}
+
+class _TypeWriterTextState extends State<TypeWriterText> {
+  ///A generated list of [String] from [widget.text.data].
+  List<String> get _textList => [
+        for (int x = 0; x < widget.text.data!.characters.length; x++)
+          widget.text.data!.characters.string.substring(0, x + 1)
+      ];
+
+  ///A [String] that displayed in [TypeWriterText] animation.
+  ///
+  ///Default value is empty string.
+  late String _textContent = _textList.first;
+
+  @override
+  void initState() {
+    ///Setting the displayed [String] from time to time.
+    Timer.periodic(widget.duration, (timer) {
+      if (timer.tick >= _textList.length) {
+        ///End the animation.
+        timer.cancel();
+      } else {
+        setState(() {
+          ///Set the rest [String] from [textList] to be displayed.
+          _textContent = _textList[timer.tick];
+        });
+      }
+    });
+    super.initState();
+  }
+
+  @override
   Widget build(BuildContext context) {
-    if (play == false) {
+    if (widget.play == false) {
       ///If play is `false`, return original [Text].
-      return text;
+      return widget.text;
     } else {
       ///If play is `true`, return animated text.
-      return ChangeNotifierProvider<TypeWriterTextState>(
-          create: (context) => TypeWriterTextState(text: text),
-          builder: (animatedContext, animatedChild) {
-            animatedContext.read<TypeWriterTextState>().animate(duration);
-            return animatedChild!;
-          },
-          child: LayoutBuilder(builder: (_, constraints) {
-            ///Uses as a dummy final text so we can get the final width and height.
-            TextPainter textPainter = TextPainter(
-                locale: text.locale,
-                maxLines: text.maxLines,
-                strutStyle: text.strutStyle,
-                text: TextSpan(
-                    text: text.data!,
-                    style: text.style,
-                    locale: text.locale,
-                    semanticsLabel: text.semanticsLabel),
-                textAlign: text.textAlign ?? TextAlign.start,
-                textDirection: text.textDirection ?? TextDirection.ltr,
-                textHeightBehavior: text.textHeightBehavior,
-                textScaleFactor: text.textScaleFactor ?? 1.0,
-                textWidthBasis: text.textWidthBasis ?? TextWidthBasis.parent)
-              ..layout(
-                  maxWidth: constraints.maxWidth,
-                  minWidth: constraints.minWidth);
+      return LayoutBuilder(builder: (_, constraints) {
+        ///Uses as a dummy final text so we can get the final width and height.
+        TextPainter textPainter = TextPainter(
+            locale: widget.text.locale,
+            maxLines: widget.text.maxLines,
+            strutStyle: widget.text.strutStyle,
+            text: TextSpan(
+                text: widget.text.data!,
+                style: widget.text.style,
+                locale: widget.text.locale,
+                semanticsLabel: widget.text.semanticsLabel),
+            textAlign: widget.text.textAlign ?? TextAlign.start,
+            textDirection: widget.text.textDirection ?? TextDirection.ltr,
+            textHeightBehavior: widget.text.textHeightBehavior,
+            textScaleFactor: widget.text.textScaleFactor ?? 1.0,
+            textWidthBasis: widget.text.textWidthBasis ?? TextWidthBasis.parent)
+          ..layout(
+              maxWidth: constraints.maxWidth, minWidth: constraints.minWidth);
 
-            ///Uses to set `width`, `height` and `alignment`.
-            return Container(
-                alignment: alignment,
-                width: maintainSize == true ? textPainter.width : null,
-                height: maintainSize == true ? textPainter.height : null,
-                child: Consumer<TypeWriterTextState>(
-                    builder: (_, value, ___) => Text(
-                          value.textContent,
-                          key: text.key,
-                          locale: text.locale,
-                          maxLines: text.maxLines,
-                          overflow: text.overflow,
-                          semanticsLabel: text.semanticsLabel,
-                          softWrap: text.softWrap,
-                          strutStyle: text.strutStyle,
-                          style: text.style,
-                          textAlign: text.textAlign,
-                          textDirection: text.textDirection,
-                          textHeightBehavior: text.textHeightBehavior,
-                          textScaleFactor: text.textScaleFactor,
-                          textWidthBasis: text.textWidthBasis,
-                        )));
-          }));
+        ///Uses to set `width`, `height` and `alignment`.
+        return Container(
+            alignment: widget.alignment,
+            width: widget.maintainSize == true ? textPainter.width : null,
+            height: widget.maintainSize == true ? textPainter.height : null,
+            child: Text(
+              _textContent,
+              key: widget.text.key,
+              locale: widget.text.locale,
+              maxLines: widget.text.maxLines,
+              overflow: widget.text.overflow,
+              semanticsLabel: widget.text.semanticsLabel,
+              softWrap: widget.text.softWrap,
+              strutStyle: widget.text.strutStyle,
+              style: widget.text.style,
+              textAlign: widget.text.textAlign,
+              textDirection: widget.text.textDirection,
+              textHeightBehavior: widget.text.textHeightBehavior,
+              textScaleFactor: widget.text.textScaleFactor,
+              textWidthBasis: widget.text.textWidthBasis,
+            ));
+      });
     }
   }
 }
