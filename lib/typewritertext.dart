@@ -1,14 +1,12 @@
-///Library for [TypeWriterText].
-///
-///Uses to make typewriter animation text.
+/// [TypeWriterText]'s library.
 library typewritertext;
 
 import 'dart:async';
 import 'package:flutter/material.dart';
 
-///A simple typewriter text animation wrapper for flutter.
+/// A simple typewriter text animation wrapper for flutter.
 class TypeWriterText extends StatefulWidget {
-  ///Create a wrapper widget to animate [Text] with typewriter animation.
+  /// Create a wrapper widget to animate [Text] with typewriter animation.
   ///
   ///```dart
   ///const TypeWriterText(
@@ -25,10 +23,10 @@ class TypeWriterText extends StatefulWidget {
       this.play = true})
       : super(key: key);
 
-  ///Uses [Text] widget as it's value.
+  ///Requires [Text] widget as it's value.
   final Text text;
 
-  ///Uses [Duration] to define how fast text changes.
+  ///Define how fast text changes.
   final Duration duration;
 
   ///Align the text within the occupied size.
@@ -39,7 +37,7 @@ class TypeWriterText extends StatefulWidget {
   ///Default value is `true`.
   final bool? maintainSize;
 
-  ///To set whether animation should play or not.
+  ///To set whether animation should be played or not.
   ///
   ///Default value is `true`.
   final bool? play;
@@ -58,22 +56,30 @@ class _TypeWriterTextState extends State<TypeWriterText> {
   ///A [String] that displayed in [TypeWriterText] animation.
   ///
   ///Default value is empty string.
-  late String _textContent = _textList.first;
+  String _textContent = "";
+
+  ///void function to start typewriting animation.
+  void _animate(Duration duration) async {
+    if (_textList.isNotEmpty && mounted) {
+      //Set the first displayed [String] from [_textList].
+      setState(() => _textContent = _textList.first);
+
+      //Setting the displayed [String] from time to time.
+      Timer.periodic(duration, (timer) {
+        if (timer.tick >= _textList.length) {
+          //End the animation.
+          timer.cancel();
+        } else {
+          //Set the rest [String] from [textList] to be displayed.
+          setState(() => _textContent = _textList[timer.tick]);
+        }
+      });
+    }
+  }
 
   @override
   void initState() {
-    ///Setting the displayed [String] from time to time.
-    Timer.periodic(widget.duration, (timer) {
-      if (timer.tick >= _textList.length) {
-        ///End the animation.
-        timer.cancel();
-      } else {
-        setState(() {
-          ///Set the rest [String] from [textList] to be displayed.
-          _textContent = _textList[timer.tick];
-        });
-      }
-    });
+    _animate(widget.duration);
     super.initState();
   }
 
@@ -85,7 +91,7 @@ class _TypeWriterTextState extends State<TypeWriterText> {
     } else {
       ///If play is `true`, return animated text.
       return LayoutBuilder(builder: (_, constraints) {
-        ///Uses as a dummy final text so we can get the final width and height.
+        ///Used as a dummy final text so we can get the final width and height.
         TextPainter textPainter = TextPainter(
             locale: widget.text.locale,
             maxLines: widget.text.maxLines,
@@ -103,7 +109,6 @@ class _TypeWriterTextState extends State<TypeWriterText> {
           ..layout(
               maxWidth: constraints.maxWidth, minWidth: constraints.minWidth);
 
-        ///Uses to set `width`, `height` and `alignment`.
         return Container(
             alignment: widget.alignment,
             width: widget.maintainSize == true ? textPainter.width : null,

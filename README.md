@@ -14,7 +14,7 @@ Add this line to your pubspec.yaml.
 
 ```yaml
 dependencies:
-  typewritertext: ^1.5.0
+  typewritertext: ^1.6.0
 ```
 
 ## Usage
@@ -35,6 +35,7 @@ const TypeWriterText(
 ```
 
 ## Documentation
+
 <table>
   <tr><td><b>Property</b></td><td><b>Purpose</b></td></tr>
   <tr><td><b><i>text<i></b></td><td>Use widget <a href='https://api.flutter.dev/flutter/widgets/Text-class.html'>Text()</a>.</td></tr>
