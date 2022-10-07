@@ -29,3 +29,7 @@
 ## 1.6.0
 
 - Update documentation.
+
+## 1.7.0
+
+- Add Repeat & Dispose

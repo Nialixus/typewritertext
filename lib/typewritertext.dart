@@ -20,11 +20,17 @@ class TypeWriterText extends StatefulWidget {
       required this.duration,
       this.alignment,
       this.maintainSize = true,
+      this.repeat = false,
       this.play = true})
       : super(key: key);
 
   ///Requires [Text] widget as it's value.
   final Text text;
+
+  ///Repeat animation.
+  ///
+  ///Default value is `false`.
+  final bool repeat;
 
   ///Define how fast text changes.
   final Duration duration;
@@ -35,7 +41,7 @@ class TypeWriterText extends StatefulWidget {
   ///To maintain occupied size of final text while animation played.
   ///
   ///Default value is `true`.
-  final bool? maintainSize;
+  final bool maintainSize;
 
   ///To set whether animation should be played or not.
   ///
@@ -47,6 +53,8 @@ class TypeWriterText extends StatefulWidget {
 }
 
 class _TypeWriterTextState extends State<TypeWriterText> {
+  int index = 0;
+
   ///A generated list of [String] from [widget.text.data].
   List<String> get _textList => [
         for (int x = 0; x < widget.text.data!.characters.length; x++)
@@ -58,29 +66,42 @@ class _TypeWriterTextState extends State<TypeWriterText> {
   ///Default value is empty string.
   String _textContent = "";
 
-  ///void function to start typewriting animation.
-  void _animate(Duration duration) async {
+  late Timer timer = Timer.periodic(widget.duration, (timer) {
+    if (timer.tick >= _textList.length && widget.repeat == false) {
+      //End the animation.
+      timer.cancel();
+    } else {
+      //Set the rest [String] from [textList] to be displayed.
+      if (widget.repeat == true) {
+        setState(() {
+          index = timer.tick ~/ _textList.length;
+          int textIndex = timer.tick - _textList.length * index;
+          _textContent = _textList[textIndex];
+        });
+      } else {
+        setState(() {
+          _textContent = _textList[timer.tick];
+        });
+      }
+    }
+  });
+
+  @override
+  void initState() {
+    super.initState();
     if (_textList.isNotEmpty && mounted) {
       //Set the first displayed [String] from [_textList].
       setState(() => _textContent = _textList.first);
 
       //Setting the displayed [String] from time to time.
-      Timer.periodic(duration, (timer) {
-        if (timer.tick >= _textList.length) {
-          //End the animation.
-          timer.cancel();
-        } else {
-          //Set the rest [String] from [textList] to be displayed.
-          setState(() => _textContent = _textList[timer.tick]);
-        }
-      });
+      timer;
     }
   }
 
   @override
-  void initState() {
-    _animate(widget.duration);
-    super.initState();
+  void dispose() {
+    if (timer.isActive) timer.cancel();
+    super.dispose();
   }
 
   @override
