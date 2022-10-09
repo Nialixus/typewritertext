@@ -33,3 +33,7 @@
 ## 1.7.0
 
 - Add Repeat & Dispose
+
+## 1.8.0
+
+- Update Documentation

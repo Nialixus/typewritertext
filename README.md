@@ -14,7 +14,7 @@ Add this line to your pubspec.yaml.
 
 ```yaml
 dependencies:
-  typewritertext: ^1.6.0
+  typewritertext: ^1.8.0
 ```
 
 ## Usage
@@ -39,10 +39,11 @@ const TypeWriterText(
 <table>
   <tr><td><b>Property</b></td><td><b>Purpose</b></td></tr>
   <tr><td><b><i>text<i></b></td><td>Use widget <a href='https://api.flutter.dev/flutter/widgets/Text-class.html'>Text()</a>.</td></tr>
-    <tr><td><b><i>duration<i></b></td><td>Used to determine how fast text changes.</td></tr>
-      <tr><td><b><i>alignment<i></b></td><td>Align the <b><i>text</i></b> within the occupied size.</td></tr>
-    <tr><td><b><i>maintainSize<i></b></td><td>Used to maintain occupied size of final text. Default value is <b><i>true</i></b>.</td></tr>
-    <tr><td><b><i>play<i></b></td><td>To set whether animation should play or not. Default value is <b><i>true</i></b>.</td></tr>
+  <tr><td><b><i>duration<i></b></td><td>Used to determine how fast text changes.</td></tr>
+  <tr><td><b><i>alignment<i></b></td><td>Align the <b><i>text</i></b> within the occupied size.</td></tr>
+  <tr><td><b><i>maintainSize<i></b></td><td>Used to maintain occupied size of final text. Default value is <b><i>true</i></b>.</td></tr>
+  <tr><td><b><i>play<i></b></td><td>To set whether animation should play or not. Default value is <b><i>true</i></b>.</td></tr>
+  <tr><td><b><i>repeat<i></b></td><td>To set whether animation should be repeated or not. Default value is <b><i>false</i></b>.</td></tr>
 </table>
 
 Full documentation <a href="https://pub.dev/documentation/typewritertext/latest/typewritertext/typewritertext-library.html">here</a>.

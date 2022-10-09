@@ -66,25 +66,8 @@ class _TypeWriterTextState extends State<TypeWriterText> {
   ///Default value is empty string.
   String _textContent = "";
 
-  late Timer timer = Timer.periodic(widget.duration, (timer) {
-    if (timer.tick >= _textList.length && widget.repeat == false) {
-      //End the animation.
-      timer.cancel();
-    } else {
-      //Set the rest [String] from [textList] to be displayed.
-      if (widget.repeat == true) {
-        setState(() {
-          index = timer.tick ~/ _textList.length;
-          int textIndex = timer.tick - _textList.length * index;
-          _textContent = _textList[textIndex];
-        });
-      } else {
-        setState(() {
-          _textContent = _textList[timer.tick];
-        });
-      }
-    }
-  });
+  /// Periodically change text
+  Timer? timer;
 
   @override
   void initState() {
@@ -94,13 +77,31 @@ class _TypeWriterTextState extends State<TypeWriterText> {
       setState(() => _textContent = _textList.first);
 
       //Setting the displayed [String] from time to time.
-      timer;
+      timer = Timer.periodic(widget.duration, (timer) {
+        if (timer.tick >= _textList.length && widget.repeat == false) {
+          //End the animation.
+          timer.cancel();
+        } else {
+          //Set the rest [String] from [textList] to be displayed.
+          if (widget.repeat == true) {
+            setState(() {
+              index = timer.tick ~/ _textList.length;
+              int textIndex = timer.tick - _textList.length * index;
+              _textContent = _textList[textIndex];
+            });
+          } else {
+            setState(() {
+              _textContent = _textList[timer.tick];
+            });
+          }
+        }
+      });
     }
   }
 
   @override
   void dispose() {
-    if (timer.isActive) timer.cancel();
+    if (timer?.isActive == true) timer?.cancel();
     super.dispose();
   }
 
