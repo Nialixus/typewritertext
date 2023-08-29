@@ -37,3 +37,7 @@
 ## 1.8.0
 
 - Update Documentation
+
+## 1.9.0
+
+- Add WidgetsBinding

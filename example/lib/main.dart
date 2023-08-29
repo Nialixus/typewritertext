@@ -14,14 +14,42 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const Scaffold(
+    return Scaffold(
         body: Padding(
-            padding: EdgeInsets.all(20.0),
+            padding: const EdgeInsets.all(20.0),
             child: Center(
-                child: TypeWriterText(
-                    repeat: true,
-                    text: Text(
-                        "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum."),
-                    duration: Duration(milliseconds: 50)))));
+                child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                TypeWriterText(
+                    repeat: false,
+                    text: Text("Hello and Welcome.",
+                        textAlign: TextAlign.left,
+                        style: Theme.of(context).textTheme.titleMedium),
+                    duration: const Duration(milliseconds: 50)),
+                TypeWriterText(
+                    repeat: false,
+                    text: Text("My name is Chris McBrien. ",
+                        textAlign: TextAlign.left,
+                        style: Theme.of(context).textTheme.headlineLarge),
+                    duration: const Duration(milliseconds: 100)),
+                TypeWriterText(
+                    repeat: false,
+                    text: Text("Builder of things. ",
+                        textAlign: TextAlign.left,
+                        style: Theme.of(context).textTheme.headlineLarge),
+                    duration: const Duration(milliseconds: 50)),
+                Container(
+                  padding: const EdgeInsets.fromLTRB(0, 10, 0, 10),
+                  child: TypeWriterText(
+                      repeat: false,
+                      text: Text(
+                          "I'm a full-stack web and salesforce developer, schrum master, and solution architext.",
+                          textAlign: TextAlign.left,
+                          style: Theme.of(context).textTheme.titleMedium),
+                      duration: const Duration(milliseconds: 50)),
+                ),
+              ],
+            ))));
   }
 }
