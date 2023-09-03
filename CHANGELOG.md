@@ -41,3 +41,7 @@
 ## 1.9.0
 
 - Add WidgetsBinding
+
+## 2.0.0
+
+- Change Timer to TickerProvider

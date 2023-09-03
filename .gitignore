@@ -31,3 +31,5 @@ example/android/
 example/analysis_option.yaml
 example/README.md
 example/macos/
+example/web/
+example/test/
