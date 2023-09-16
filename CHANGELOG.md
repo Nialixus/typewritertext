@@ -45,3 +45,7 @@
 ## 2.0.0
 
 - Change Timer to TickerProvider
+
+# 2.1.0
+
+- Add TypeWriter Builder

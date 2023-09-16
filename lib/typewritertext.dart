@@ -4,6 +4,8 @@ library typewritertext;
 import 'dart:async';
 import 'package:flutter/material.dart';
 
+enum _TypeWriterTextType { text, builder }
+
 /// A simple typewriter text animation wrapper for flutter.
 class TypeWriterText extends StatefulWidget {
   /// Create a wrapper widget to animate [Text] with typewriter animation.
@@ -14,18 +16,39 @@ class TypeWriterText extends StatefulWidget {
   ///   duration: Duration(milliseconds:50),
   /// );
   ///```
-  const TypeWriterText(
-      {Key? key,
-      required this.text,
-      required this.duration,
-      this.alignment,
-      this.maintainSize = true,
-      this.repeat = false,
-      this.play = true})
-      : super(key: key);
+  const TypeWriterText({
+    Key? key,
+    required this.text,
+    required this.duration,
+    this.alignment,
+    this.maintainSize = true,
+    this.repeat = false,
+    this.play = true,
+  })  : _type = _TypeWriterTextType.text,
+        builder = null,
+        super(key: key);
 
-  ///Requires [Text] widget as it's value.
-  final Text text;
+  const TypeWriterText.builder({
+    Key? key,
+    this.alignment,
+    this.maintainSize = true,
+    this.repeat = false,
+    this.play = true,
+    required this.duration,
+    required this.builder,
+  })  : _type = _TypeWriterTextType.builder,
+        text = null,
+        super(key: key);
+
+  /// Widget builder for advance customization.
+  final Widget Function(BuildContext context)? builder;
+
+  /// Requires [Text] widget as it's value.
+  final Text? text;
+
+  /// A private identifier bet
+  // ignore: unused_field
+  final _TypeWriterTextType _type;
 
   ///Repeat animation.
   ///
@@ -52,8 +75,7 @@ class TypeWriterText extends StatefulWidget {
   State<TypeWriterText> createState() => _TypeWriterTextState();
 }
 
-class _TypeWriterTextState extends State<TypeWriterText>
-    with SingleTickerProviderStateMixin {
+class _TypeWriterTextState extends State<TypeWriterText> with SingleTickerProviderStateMixin {
   late AnimationController _controller;
   String _textContent = "";
 
@@ -123,8 +145,7 @@ class _TypeWriterTextState extends State<TypeWriterText>
             textHeightBehavior: widget.text.textHeightBehavior,
             textScaleFactor: widget.text.textScaleFactor ?? 1.0,
             textWidthBasis: widget.text.textWidthBasis ?? TextWidthBasis.parent)
-          ..layout(
-              maxWidth: constraints.maxWidth, minWidth: constraints.minWidth);
+          ..layout(maxWidth: constraints.maxWidth, minWidth: constraints.minWidth);
 
         return Container(
             alignment: widget.alignment,
