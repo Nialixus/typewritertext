@@ -33,8 +33,8 @@ const TypeWriterText(
   duration: Duration(milliseconds: 50),
 );
 
-// or if you can use builder to integrate 
-// with other widget like auto size text like this
+// or you can use builder to integrate 
+// with other widget like this
 
 const TypeWriterText.builder(
   'Lorem ipsum dolor sit amet ...',
