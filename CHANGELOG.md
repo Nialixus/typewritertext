@@ -48,4 +48,4 @@
 
 # 2.1.0
 
-- Add TypeWriter Builder
+- Add TypeWriterText.builder

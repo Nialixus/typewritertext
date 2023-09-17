@@ -29,8 +29,23 @@ And then put the widget like this.
 
 ```dart
 const TypeWriterText(
-    text: Text('text'),
-    duration: Duration(milliseconds: 50),
+  text: Text('lorem ipsum dolor sit amet ...'),
+  duration: Duration(milliseconds: 50),
+);
+
+// or if you can use builder to integrate 
+// with other widget like auto size text like this
+
+const TypeWriterText.builder(
+  'Lorem ipsum dolor sit amet ...',
+  duration: Duration(milliseconds: 50),
+  builder: (context, value) {
+    return AutoSizeText(
+      value,
+      maxLines: 2,
+      minFontSize: 2.0,
+    );
+  }
 );
 ```
 
