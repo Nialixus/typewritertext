@@ -1,5 +1,5 @@
 <p align="center">
-  <img src="https://user-images.githubusercontent.com/45191605/272775430-c00bdb8f-c752-4659-be3b-8223b2373fe7.png" alt="TypeWeriter Text Dall-E Logo" width="150">
+  <img src="https://user-images.githubusercontent.com/45191605/272785686-7a626063-6047-463a-b931-db256c708335.png" alt="TypeWeriter Text Dall-E Logo" width="150">
 </p>
 
 # Type Writer Text
