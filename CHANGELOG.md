@@ -46,10 +46,14 @@
 
 - Change Timer to TickerProvider
 
-# 2.1.0
+## 2.1.0
 
 - Add TypeWriterText.builder
 
-# 2.2.0
+## 2.2.0
 
 - Update pubspec
+
+## 2.3.0
+
+- Fix Changelog

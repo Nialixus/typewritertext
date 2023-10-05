@@ -1,6 +1,6 @@
 name: typewritertext
 description: A simple typewriter text animation wrapper for flutter. Supports iOS, Android, web, Windows, macOS, and Linux.
-version: 2.2.0
+version: 2.3.0
 homepage: https://github.com/Nialixus/typewritertext.git
 funding: 
   - https://www.buymeacoffee.com/nialixus

@@ -18,7 +18,7 @@ Add this line to your pubspec.yaml.
 
 ```yaml
 dependencies:
-  typewritertext: ^2.2.0
+  typewritertext: ^2.3.0
 ```
 
 ## Usage
