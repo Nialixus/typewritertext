@@ -1,3 +1,7 @@
+<p align="center">
+  <img src="https://user-images.githubusercontent.com/45191605/272775430-c00bdb8f-c752-4659-be3b-8223b2373fe7.png" alt="TypeWeriter Text Dall-E Logo" width="150">
+</p>
+
 # Type Writer Text
 
 <a href='https://pub.dev/packages/typewritertext'><img src='https://img.shields.io/pub/v/typewritertext.svg?logo=flutter&color=blue&style=flat-square'/></a>\
@@ -14,7 +18,7 @@ Add this line to your pubspec.yaml.
 
 ```yaml
 dependencies:
-  typewritertext: ^2.1.0
+  typewritertext: ^2.2.0
 ```
 
 ## Usage
