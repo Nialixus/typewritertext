@@ -181,6 +181,7 @@ class _TypeWriterTextState extends State<TypeWriterText>
                 locale: text.locale,
                 maxLines: text.maxLines,
                 strutStyle: text.strutStyle,
+                textScaler: text.textScaler ?? TextScaler.noScaling,
                 text: TextSpan(
                     text: text.data!,
                     style: text.style,
@@ -189,7 +190,6 @@ class _TypeWriterTextState extends State<TypeWriterText>
                 textAlign: text.textAlign ?? TextAlign.start,
                 textDirection: text.textDirection ?? TextDirection.ltr,
                 textHeightBehavior: text.textHeightBehavior,
-                textScaleFactor: text.textScaleFactor ?? 1.0,
                 textWidthBasis: text.textWidthBasis ?? TextWidthBasis.parent)
               ..layout(
                   maxWidth: constraints.maxWidth,
@@ -201,6 +201,8 @@ class _TypeWriterTextState extends State<TypeWriterText>
                 height: widget.maintainSize ? textPainter.height : null,
                 child: Text(
                   text.data!.substring(0, _tick),
+                  selectionColor: text.selectionColor,
+                  textScaler: text.textScaler,
                   key: text.key,
                   locale: text.locale,
                   maxLines: text.maxLines,
@@ -212,7 +214,6 @@ class _TypeWriterTextState extends State<TypeWriterText>
                   textAlign: text.textAlign,
                   textDirection: text.textDirection,
                   textHeightBehavior: text.textHeightBehavior,
-                  textScaleFactor: text.textScaleFactor,
                   textWidthBasis: text.textWidthBasis,
                 ));
           });

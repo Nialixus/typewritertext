@@ -57,3 +57,6 @@
 ## 2.3.0
 
 - Fix Changelog
+
+## 2.3.1
+- Remove deprecated `textScaleFactor`
