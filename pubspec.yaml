@@ -1,6 +1,6 @@
 name: typewritertext
 description: A simple typewriter text animation wrapper for flutter. Supports iOS, Android, web, Windows, macOS, and Linux.
-version: 2.3.1
+version: 2.3.1-new
 homepage: https://inidia.app
 repository: https://github.com/Nialixus/typewritertext.git
 issue_tracker: https://github.com/Nialixus/typewritertext/issues
@@ -24,5 +24,5 @@ dependencies:
 dev_dependencies:
   flutter_test:
     sdk: flutter
-  flutter_lints: ^2.0.0
+  flutter_lints: ^3.0.1
 flutter: null

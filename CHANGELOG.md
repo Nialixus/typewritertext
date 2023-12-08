@@ -58,5 +58,5 @@
 
 - Fix Changelog
 
-## 2.3.1
+## 2.3.1-new
 - Remove deprecated `textScaleFactor`
