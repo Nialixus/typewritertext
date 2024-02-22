@@ -60,3 +60,6 @@
 
 ## 2.3.1-new
 - Remove deprecated `textScaleFactor`
+
+## 3.0.0
+- Rebuild Typewriter text

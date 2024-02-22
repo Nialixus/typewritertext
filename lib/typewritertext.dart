@@ -4,6 +4,8 @@ library typewritertext;
 import 'dart:async';
 import 'package:flutter/material.dart';
 
+part 'src/typewriter_controller.dart';
+
 /// Enum to represent the type of [TypeWriterText].
 enum _TypeWriterTextType {
   /// Represents a [TypeWriterText] with [Text] content.
