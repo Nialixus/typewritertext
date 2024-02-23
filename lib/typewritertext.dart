@@ -4,7 +4,9 @@ library typewritertext;
 import 'dart:async';
 import 'package:flutter/material.dart';
 
-part 'src/typewriter_controller.dart';
+part 'v3/typewriter_controller.dart';
+part 'v3/typewriter_value.dart';
+part 'v3/typewriter.dart';
 
 /// Enum to represent the type of [TypeWriterText].
 enum _TypeWriterTextType {
@@ -26,7 +28,7 @@ class TypeWriterText extends StatefulWidget {
   /// );
   ///```
   const TypeWriterText({
-    Key? key,
+    super.key,
     this.alignment,
     this.maintainSize = true,
     this.repeat = false,
@@ -35,8 +37,7 @@ class TypeWriterText extends StatefulWidget {
     required this.duration,
   })  : _type = _TypeWriterTextType._text,
         builder = null,
-        data = '',
-        super(key: key);
+        data = '';
 
   /// Constructor for creating a [TypeWriterText] with a custom builder function.
   ///
@@ -65,7 +66,7 @@ class TypeWriterText extends StatefulWidget {
   /// ```
   const TypeWriterText.builder(
     this.data, {
-    Key? key,
+    super.key,
     this.repeat = false,
     this.play = true,
     required this.duration,
@@ -73,8 +74,7 @@ class TypeWriterText extends StatefulWidget {
   })  : _type = _TypeWriterTextType._builder,
         text = null,
         alignment = null,
-        maintainSize = false,
-        super(key: key);
+        maintainSize = false;
 
   /// The text data to be displayed during the typewriter animation.
   final String data;
@@ -175,36 +175,35 @@ class _TypeWriterTextState extends State<TypeWriterText>
           return widget.text!;
         } else {
           ///If play is `true`, return animated text.
-          return LayoutBuilder(builder: (_, constraints) {
-            final text = widget.text!;
+          return LayoutBuilder(
+            builder: (_, constraints) {
+              final text = widget.text!;
 
-            ///Used as a dummy final text so we can get the final width and height.
-            TextPainter textPainter = TextPainter(
-                locale: text.locale,
-                maxLines: text.maxLines,
-                strutStyle: text.strutStyle,
-                textScaler: text.textScaler ?? TextScaler.noScaling,
-                text: TextSpan(
-                    text: text.data!,
-                    style: text.style,
-                    locale: text.locale,
-                    semanticsLabel: text.semanticsLabel),
-                textAlign: text.textAlign ?? TextAlign.start,
-                textDirection: text.textDirection ?? TextDirection.ltr,
-                textHeightBehavior: text.textHeightBehavior,
-                textWidthBasis: text.textWidthBasis ?? TextWidthBasis.parent)
-              ..layout(
-                  maxWidth: constraints.maxWidth,
-                  minWidth: constraints.minWidth);
+              ///Used as a dummy final text so we can get the final width and height.
+              TextPainter textPainter = TextPainter(
+                  locale: text.locale,
+                  maxLines: text.maxLines,
+                  strutStyle: text.strutStyle,
+                  text: TextSpan(
+                      text: text.data!,
+                      style: text.style,
+                      locale: text.locale,
+                      semanticsLabel: text.semanticsLabel),
+                  textAlign: text.textAlign ?? TextAlign.start,
+                  textDirection: text.textDirection ?? TextDirection.ltr,
+                  textHeightBehavior: text.textHeightBehavior,
+                  textWidthBasis: text.textWidthBasis ?? TextWidthBasis.parent)
+                ..layout(
+                    maxWidth: constraints.maxWidth,
+                    minWidth: constraints.minWidth);
 
-            return Container(
+              return Container(
                 alignment: widget.alignment,
                 width: widget.maintainSize ? textPainter.width : null,
                 height: widget.maintainSize ? textPainter.height : null,
                 child: Text(
                   text.data!.substring(0, _tick),
                   selectionColor: text.selectionColor,
-                  textScaler: text.textScaler,
                   key: text.key,
                   locale: text.locale,
                   maxLines: text.maxLines,
@@ -217,8 +216,10 @@ class _TypeWriterTextState extends State<TypeWriterText>
                   textDirection: text.textDirection,
                   textHeightBehavior: text.textHeightBehavior,
                   textWidthBasis: text.textWidthBasis,
-                ));
-          });
+                ),
+              );
+            },
+          );
         }
     }
   }

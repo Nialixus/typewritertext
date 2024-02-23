@@ -7,7 +7,87 @@ void main() {
       title: 'Typewritertext Demo',
       debugShowCheckedModeBanner: false,
       theme: ThemeData(primarySwatch: Colors.blue),
-      home: const MyApp()));
+      home: const MyNewApp()));
+}
+
+class MyNewApp extends StatelessWidget {
+  const MyNewApp({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return SelectionArea(
+      child: Scaffold(
+        body: Padding(
+          padding: const EdgeInsets.all(20.0),
+          child: Center(
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.stretch,
+              children: [
+                TypeWriter.text(
+                  "What is Lorem Ipsum?",
+                  maintainSize: true,
+                  alignment: Alignment.center,
+                  style: const TextStyle(
+                    fontSize: 40.0,
+                    fontWeight: FontWeight.bold,
+                  ),
+                  duration: const Duration(milliseconds: 50),
+                ),
+                Padding(
+                  padding: const EdgeInsets.symmetric(vertical: 20.0),
+                  child: TypeWriter(
+                    controller: TypeWriterController(
+                      text: "Lorem Ipsum is simply dummy text of "
+                          "the printing and typesetting industry. "
+                          "Lorem Ipsum has been the industry's standard "
+                          "dummy text ever since the 1500s, when an unknown "
+                          "printer took a galley of type and scrambled it to "
+                          "make a type specimen book. It has survived not only "
+                          "five centuries, but also the leap into electronic typesetting, "
+                          "remaining essentially unchanged. ",
+                      duration: const Duration(milliseconds: 50),
+                    ),
+                    builder: (context, value) {
+                      return AutoSizeText(
+                        value.text,
+                        maxLines: 2,
+                        minFontSize: 2.0,
+                        textAlign: TextAlign.left,
+                        style: const TextStyle(fontSize: 14.0),
+                      );
+                    },
+                  ),
+                ),
+                Align(
+                  alignment: Alignment.centerRight,
+                  child: TypeWriter(
+                    controller: TypeWriterController.fromValue(
+                        TypeWriterValue([
+                          'First Paragraph',
+                          'Second Paragraph',
+                          'Third Paragraph'
+                        ]),
+                        duration: const Duration(milliseconds: 300),
+                        repeat: true),
+                    builder: (context, value) {
+                      return Text(
+                        value.text,
+                        style: const TextStyle(
+                          color: Colors.grey,
+                          fontStyle: FontStyle.italic,
+                          fontSize: 10.0,
+                        ),
+                      );
+                    },
+                  ),
+                )
+              ],
+            ),
+          ),
+        ),
+      ),
+    );
+  }
 }
 
 class MyApp extends StatelessWidget {
@@ -17,44 +97,41 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return SelectionArea(
       child: Scaffold(
-          body: Padding(
-              padding: const EdgeInsets.all(20.0),
-              child: Center(
-                  child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                    TypeWriterText(
-                        repeat: false,
-                        text: Text("Hello and Welcome.",
-                            textAlign: TextAlign.left,
-                            style: Theme.of(context).textTheme.titleMedium),
-                        duration: const Duration(milliseconds: 50)),
-                    TypeWriterText(
-                        repeat: false,
-                        text: Text("My name is Chris McBrien. ",
-                            textAlign: TextAlign.left,
-                            style: Theme.of(context).textTheme.headlineLarge),
-                        duration: const Duration(milliseconds: 100)),
-                    TypeWriterText(
-                        repeat: false,
-                        text: Text("Builder of things. ",
-                            textAlign: TextAlign.left,
-                            style: Theme.of(context).textTheme.headlineLarge),
-                        duration: const Duration(milliseconds: 50)),
-                    Padding(
-                        padding: const EdgeInsets.fromLTRB(0, 10, 0, 10),
-                        child: TypeWriterText.builder(
-                            "I'm a full-stack web and salesforce developer, schrum master, and solution architext. I'm a full-stack web and salesforce developer, schrum master, and solution architext. I'm a full-stack web and salesforce developer, schrum master, and solution architext. I'm a full-stack web and salesforce developer, schrum master, and solution architext.",
-                            repeat: false, builder: (context, value) {
-                          return AutoSizeText(
-                            value,
-                            maxLines: 2,
-                            minFontSize: 2.0,
-                            textAlign: TextAlign.left,
-                            style: const TextStyle(fontSize: 20.0),
-                          );
-                        }, duration: const Duration(milliseconds: 50)))
-                  ])))),
+        body: Padding(
+          padding: const EdgeInsets.all(20.0),
+          child: Center(
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                TypeWriterText(
+                  repeat: false,
+                  duration: const Duration(milliseconds: 50),
+                  text: Text("What is Lorem Ipsum?",
+                      textAlign: TextAlign.left,
+                      style: Theme.of(context).textTheme.titleMedium),
+                ),
+                Padding(
+                  padding: const EdgeInsets.fromLTRB(0, 10, 0, 10),
+                  child: TypeWriterText.builder(
+                    "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. ",
+                    repeat: false,
+                    duration: const Duration(milliseconds: 50),
+                    builder: (context, value) {
+                      return AutoSizeText(
+                        value,
+                        maxLines: 2,
+                        minFontSize: 2.0,
+                        textAlign: TextAlign.left,
+                        style: const TextStyle(fontSize: 20.0),
+                      );
+                    },
+                  ),
+                ),
+              ],
+            ),
+          ),
+        ),
+      ),
     );
   }
 }
