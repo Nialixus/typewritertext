@@ -63,3 +63,6 @@
 
 ## 3.0.0
 - Add TypeWriter v3
+
+## 3.0.1
+- Calling stop before dispose

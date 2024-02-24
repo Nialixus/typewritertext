@@ -91,4 +91,10 @@ class TypeWriterController extends ValueNotifier<TypeWriterValue> {
   void stop() {
     _stop = true;
   }
+
+  @override
+  void dispose() {
+    stop();
+    super.dispose();
+  }
 }

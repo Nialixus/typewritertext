@@ -249,10 +249,7 @@ class _X extends State<TypeWriter> {
 
   @override
   void dispose() {
-    if (_autoDispose) {
-      controller.stop();
-      controller.dispose();
-    }
+    if (_autoDispose) controller.dispose();
     super.dispose();
   }
 }
