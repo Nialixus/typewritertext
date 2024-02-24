@@ -29,18 +29,18 @@ First, import the typewriter package.
 import 'package:typewritertext/typewritertext.dart';
 ```
 
-And then put the widget like this.
-
-> Version 1
+### Version 1++
+And to make basic `TypeWriterText` just make it like this
 ```dart
 const TypeWriterText(
   text: Text('lorem ipsum dolor sit amet ...'),
   duration: Duration(milliseconds: 50),
 );
+```
 
-// or you can use builder to integrate 
-// with other widget like this
+Or if you want something that more customizable, use this
 
+```dart
 const TypeWriterText.builder(
   'Lorem ipsum dolor sit amet ...',
   duration: Duration(milliseconds: 50),
@@ -54,18 +54,21 @@ const TypeWriterText.builder(
 );
 ```
 
-Or you can use new version by using this
+### Version 3++
+Now there is new version of `TypeWriterText`, 
+where the text value that being used is not a `Text` widget but `Iterable<String>`.
+Here's the basic example of it.
 
-> Version 3
 ```dart
 TypeWriter.text(
   'lorem ipsum dolot sit amet ...',
   duration: const Duration(milliseconds: 50),
 );
+```
 
-// now if you want to use builder
-// you need to initiate controller
+And for the builder, you need to initiate a controller like this one.
 
+```dart
 final controller = TypeWriterController(text: 'Hello World',
   duration: const Duration(milliseconds: 50),
 );
@@ -73,7 +76,7 @@ final controller = TypeWriterController(text: 'Hello World',
 // also if you want the typewriter to not only changing
 // the character but also words, you can use this controller.
 
-final advanceController = TypeWriterController.fromValue(
+final valueController = TypeWriterController.fromValue(
   ['First Paragraph', 'Next Paragraph', 'Last Paragraph'],
   duration: const Duration(milliseconds: 50),
 );
@@ -91,18 +94,42 @@ TypeWriter(
 ```
 
 ## Documentation
-
-<table>
-  <tr><td><b>Property</b></td><td><b>Purpose</b></td></tr>
-  <tr><td><b><i>text<i></b></td><td>Use widget <a href='https://api.flutter.dev/flutter/widgets/Text-class.html'>Text()</a>.</td></tr>
-  <tr><td><b><i>duration<i></b></td><td>Used to determine how fast text changes.</td></tr>
-  <tr><td><b><i>alignment<i></b></td><td>Align the <b><i>text</i></b> within the occupied size.</td></tr>
-  <tr><td><b><i>maintainSize<i></b></td><td>Used to maintain occupied size of final text. Default value is <b><i>true</i></b>.</td></tr>
-  <tr><td><b><i>play<i></b></td><td>To set whether animation should play or not. Default value is <b><i>true</i></b>.</td></tr>
-  <tr><td><b><i>repeat<i></b></td><td>To set whether animation should be repeated or not. Default value is <b><i>false</i></b>.</td></tr>
-</table>
-
 Full documentation <a href="https://pub.dev/documentation/typewritertext/latest/typewritertext/typewritertext-library.html">here</a>.
+
+### Version 1++
+| Property        | Purpose                                        |
+|-----------------|------------------------------------------------|
+| text            | Use widget [Text()](https://api.flutter.dev/flutter/widgets/Text-class.html). |
+| duration        | Used to determine how fast text changes.        |
+| alignment       | Align the `text` within the occupied size.      |
+| maintainSize    | Used to maintain the occupied size of the final text. Default value is `true`. |
+| play            | To set whether the animation should play or not. Default value is `true`. |
+| repeat          | To set whether the animation should be repeated or not. Default value is `false`. |
+
+### Version 3++
+| Property             | Purpose                                                      |
+|----------------------|--------------------------------------------------------------|
+| repeat               | Specifies whether the animation should repeat once completed (default is `false`). |
+| enabled              | Is the flag to play the animation or not.                    |
+| maintainSize         | Specifies whether the size of the layout text should be maintained. |
+| duration             | Delay time between each character.                          |
+| alignment            | Alignment of the text layout.                                |
+| text                 | The text to be displayed during the typewriter animation.   |
+| controller           | Controller for the animation.                                |
+| onChanged            | Callback function for when the text is changed.             |
+| builder              | Builder for the widget.                                      |
+| textAlign            | Alignment of the text.                                       |
+| style                | Style of the text.                                          |
+| maxLines             | Maximum number of lines to be displayed.                    |
+| overflow             | Overflow behavior of the text.                              |
+| semanticsLabel       | Semantics label of the text.                                |
+| softWrap             | Specifies whether the text should break at soft line breaks.|
+| strutStyle           | Strut style of the text.                                    |
+| locale               | Locale of the text.                                         |
+| textDirection        | Text direction of the text.                                 |
+| textHeightBehavior   | Text height behavior of the text.                           |
+| textWidthBasis       | Text width basis of the text.                               |
+| selectionColor       | Color of the selection.                                     |
 
 ## Example
 
