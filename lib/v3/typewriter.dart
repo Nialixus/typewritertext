@@ -1,6 +1,26 @@
 part of '../typewritertext.dart';
 
+/// New simple typewriter animation widget.
+///
+/// ```dart
+/// return TypeWriter.text(
+///   text: 'Hello World',
+///   duration: const Duration(milliseconds: 50),
+/// };
+/// ```
 class TypeWriter extends StatefulWidget {
+  /// Constructor for [TypeWriter].
+  ///
+  /// [controller] is the controller for the animation.
+  /// [builder] is the builder for the widget.
+  /// [enabled] is the flag to enable the animation or not.
+  ///
+  /// ```dart
+  /// return TypeWriter(
+  ///   controller: controller,
+  ///   builder: (context, value) => Text(value.text),
+  /// );
+  /// ```
   TypeWriter({
     super.key,
     this.enabled = true,
@@ -25,6 +45,34 @@ class TypeWriter extends StatefulWidget {
         maintainSize = false,
         alignment = null;
 
+  /// Constructor for [TypeWriter.text].
+  ///
+  /// [text] is the text to be displayed during the typewriter animation.
+  /// [enabled] is the flag to enable the animation or not.
+  /// [onChanged] is the callback function for when the text is changed.
+  /// [repeat] specifies whether the animation should repeat once completed (default is `false`).
+  /// [textAlign] is the alignment of the text.
+  /// [style] is the style of the text.
+  /// [maxLines] is the maximum number of lines to be displayed.
+  /// [overflow] is the overflow behavior of the text.
+  /// [semanticsLabel] is the semantics label of the text.
+  /// [softWrap] specifies whether the text should break at soft line breaks.
+  /// [strutStyle] is the strut style of the text.
+  /// [locale] is the locale of the text.
+  /// [textDirection] is the text direction of the text.
+  /// [textHeightBehavior] is the text height behavior of the text.
+  /// [textWidthBasis] is the text width basis of the text.
+  /// [selectionColor] is the color of the selection.
+  /// [maintainSize] specifies whether the size of the text should be maintained.
+  /// [alignment] is the alignment of the layout text.
+  /// [duration] is the duration of the animation.
+  ///
+  /// ```dart
+  /// return TypeWriter.text(
+  ///   'Hello World',
+  ///   duration: const Duration(milliseconds: 50),
+  /// );
+  /// ```
   TypeWriter.text(
     String text, {
     super.key,
@@ -52,26 +100,67 @@ class TypeWriter extends StatefulWidget {
         assert(alignment != null && maintainSize || alignment == null,
             'If alignment is not null, maintainSize should be true.');
 
+  /// Specifies whether the animation should repeat once completed (default is `false`).
   final bool repeat;
+
+  /// Is the flag to play the animation or not.
   final bool enabled;
+
+  /// Specifies whether the size of the layout text should be maintained.
   final bool maintainSize;
+
+  /// Delay time between each character
   final Duration duration;
+
+  /// Alignment of the text layout.
   final Alignment? alignment;
+
+  /// The text to be displayed during the typewriter animation.
   final Iterable<String> text;
+
+  /// Controller for the animation.
   final TypeWriterController? controller;
+
+  /// Callback function for when the text is changed.
   final void Function(TypeWriterValue value)? onChanged;
+
+  /// Builder for the widget.
   final Widget Function(BuildContext, TypeWriterValue value)? builder;
+
+  /// Alignment of the text.
   final TextAlign? textAlign;
+
+  /// Style of the text.
   final TextStyle? style;
+
+  /// Maximum number of lines to be displayed.
   final int? maxLines;
+
+  /// Overflow behavior of the text.
   final TextOverflow? overflow;
+
+  /// Semantics label of the text.
   final String? semanticsLabel;
+
+  /// Specifies whether the text should break at soft line breaks.
   final bool? softWrap;
+
+  /// Strut style of the text.
   final StrutStyle? strutStyle;
+
+  /// Locale of the text.
   final Locale? locale;
+
+  /// Text direction of the text.
   final TextDirection? textDirection;
+
+  /// Text height behavior of the text.
   final TextHeightBehavior? textHeightBehavior;
+
+  /// Text width basis of the text.
   final TextWidthBasis? textWidthBasis;
+
+  /// Color of the selection.
   final Color? selectionColor;
 
   @override
@@ -79,6 +168,7 @@ class TypeWriter extends StatefulWidget {
 }
 
 class _X extends State<TypeWriter> {
+  //// Controller used in [TypeWriter].
   late final TypeWriterController controller;
   late bool _autoDispose;
 
@@ -159,7 +249,10 @@ class _X extends State<TypeWriter> {
 
   @override
   void dispose() {
-    if (_autoDispose) controller.dispose();
+    if (_autoDispose) {
+       controller.stop();
+      controller.dispose();
+    }
     super.dispose();
   }
 }

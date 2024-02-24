@@ -62,13 +62,14 @@ class MyNewApp extends StatelessWidget {
                   alignment: Alignment.centerRight,
                   child: TypeWriter(
                     controller: TypeWriterController.fromValue(
-                        TypeWriterValue([
-                          'First Paragraph',
-                          'Second Paragraph',
-                          'Third Paragraph'
-                        ]),
-                        duration: const Duration(milliseconds: 300),
-                        repeat: true),
+                      TypeWriterValue([
+                        'First Paragraph',
+                        'Second Paragraph',
+                        'Third Paragraph'
+                      ]),
+                      duration: const Duration(milliseconds: 300),
+                      repeat: true,
+                    ),
                     builder: (context, value) {
                       return Text(
                         value.text,

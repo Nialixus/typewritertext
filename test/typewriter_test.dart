@@ -1,25 +1,60 @@
+import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:typewritertext/typewritertext.dart';
 
 void main() {
-  group('TypeWriterValue', () {
-    final value = TypeWriterValue(
-      ['the', 'hash', 'slinging', 'slasher'],
-      index: 2,
-    );
-    test('length', () {
-      expect(value.length, equals(22));
-      value.data = ['dummy'];
-      expect(value.length, equals(5));
+  group('TypeWriter', () {
+    testWidgets('text', (WidgetTester tester) async {
+      final controller = TypeWriterController(
+        text: 'Hello World',
+        duration: const Duration(milliseconds: 50),
+      );
+
+      await tester.runAsync(() async {
+        await controller.start();
+
+        await tester.pumpWidget(
+          MaterialApp(
+            home: TypeWriter(
+              controller: controller,
+              builder: (context, value) => Text(value.text),
+            ),
+          ),
+        );
+
+        expect(find.text('Hello World'), findsOneWidget);
+      });
     });
 
-    test('text', () {
-      value.data = ['the', 'hash', 'slinging', 'slasher'];
-      expect(value.text, equals('th'));
-      value.index = 22;
-      expect(value.text, equals('slasher'));
-      value.index = 25;
-      expect(value.text, equals('th'));
+    testWidgets('value', (WidgetTester tester) async {
+      await tester.runAsync(() async {
+        await tester.pumpWidget(
+          MaterialApp(
+            home: TypeWriter.text(
+              'Hello World',
+              duration: const Duration(milliseconds: 50),
+              onChanged: (value) {
+                final text = [
+                  'H',
+                  'He',
+                  'Hel',
+                  'Hell',
+                  'Hello',
+                  'Hello ',
+                  'Hello W',
+                  'Hello Wo',
+                  'Hello Wor',
+                  'Hello Worl',
+                  'Hello World',
+                ][value.index];
+
+                expect(value.text, equals(text));
+                expect(value.index <= 10, isTrue);
+              },
+            ),
+          ),
+        );
+      });
     });
   });
 }
