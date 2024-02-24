@@ -31,6 +31,7 @@ import 'package:typewritertext/typewritertext.dart';
 
 And then put the widget like this.
 
+> Version 1
 ```dart
 const TypeWriterText(
   text: Text('lorem ipsum dolor sit amet ...'),
@@ -49,6 +50,42 @@ const TypeWriterText.builder(
       maxLines: 2,
       minFontSize: 2.0,
     );
+  }
+);
+```
+
+Or you can use new version by using this
+
+> Version 3
+```dart
+TypeWriter.text(
+  'lorem ipsum dolot sit amet ...',
+  duration: const Duration(milliseconds: 50),
+);
+
+// now if you want to use builder
+// you need to initiate controller
+
+final controller = TypeWriterController(text: 'Hello World',
+  duration: const Duration(milliseconds: 50),
+);
+
+// also if you want the typewriter to not only changing
+// the character but also words, you can use this controller.
+
+final advanceController = TypeWriterController.fromValue(
+  ['First Paragraph', 'Next Paragraph', 'Last Paragraph'],
+  duration: const Duration(milliseconds: 50),
+);
+
+TypeWriter(
+  controller: controller,
+  builder: (context, value) {
+    return AutoSizeText(
+      value.text,
+      maxLines: 2,
+      minFontSize: 2.0,
+    ); 
   }
 );
 ```

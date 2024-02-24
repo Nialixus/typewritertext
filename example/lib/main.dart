@@ -91,8 +91,8 @@ class MyNewApp extends StatelessWidget {
   }
 }
 
-class MyApp extends StatelessWidget {
-  const MyApp({Key? key}) : super(key: key);
+class MyOldApp extends StatelessWidget {
+  const MyOldApp({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
