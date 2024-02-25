@@ -18,7 +18,7 @@ Add this line to your pubspec.yaml.
 
 ```yaml
 dependencies:
-  typewritertext: ^3.0.1
+  typewritertext: ^3.0.2
 ```
 
 ## Usage
@@ -77,7 +77,11 @@ final controller = TypeWriterController(text: 'Hello World',
 // the character but also words, you can use this controller.
 
 final valueController = TypeWriterController.fromValue(
-  ['First Paragraph', 'Next Paragraph', 'Last Paragraph'],
+  TypeWriterValue([
+    'First Paragraph', 
+    'Next Paragraph', 
+    'Last Paragraph',
+  ]),
   duration: const Duration(milliseconds: 50),
 );
 

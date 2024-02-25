@@ -66,3 +66,7 @@
 
 ## 3.0.1
 - Calling stop before dispose
+
+## 3.0.2
+- Add assertion of text length
+- Update readme

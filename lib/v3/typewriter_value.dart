@@ -31,7 +31,9 @@ class TypeWriterValue {
 
   /// Total length of [data].
   int get length {
-    return data.fold<int>(0, (p, n) => p + n.length);
+    final result = data.fold<int>(0, (p, n) => p + n.length);
+    assert(result > 0, 'Length of text data must be greater than 0');
+    return result;
   }
 
   /// End index of the text that want to be written.
