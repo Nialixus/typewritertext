@@ -3,26 +3,42 @@ import 'package:flutter_test/flutter_test.dart';
 import 'package:typewritertext/typewritertext.dart';
 
 void main() {
+  const data = 'Hello World';
+  const duration = Duration(milliseconds: 50);
+
+  late TypeWriterController controller;
+
+  setUp(() {
+    controller = TypeWriterController(
+      text: data,
+      duration: duration,
+    );
+  });
+
+  tearDown(() {
+    controller.dispose();
+  });
+
   group('TypeWriter', () {
     testWidgets('text', (WidgetTester tester) async {
-      final controller = TypeWriterController(
-        text: 'Hello World',
-        duration: const Duration(milliseconds: 50),
-      );
-
       await tester.runAsync(() async {
-        await controller.start();
-
         await tester.pumpWidget(
           MaterialApp(
             home: TypeWriter(
               controller: controller,
               builder: (context, value) => Text(value.text),
+              onFinished: (value) {
+                expect(value.text, equals('Hello World'));
+                expect(value.index, equals(10));
+              },
             ),
           ),
         );
 
+        await controller.start();
+        await tester.pump();
         expect(find.text('Hello World'), findsOneWidget);
+        expect(controller.value.text, equals('Hello World'));
       });
     });
 
@@ -55,6 +71,40 @@ void main() {
           ),
         );
       });
+    });
+  });
+
+  group('TypeWriterText', () {
+    testWidgets('text', (WidgetTester tester) async {
+      final widget = TypeWriterText(
+        text: const Text(data),
+        duration: duration,
+        onFinished: (value) {},
+      );
+      await tester.pumpWidget(
+        MaterialApp(home: widget),
+      );
+      await tester.pump(duration * data.length);
+      expect(widget.onFinished != null, isTrue);
+      expect(widget.onFinished, isA<void Function(String value)>());
+      expect(find.text('Hello World'), findsOneWidget);
+    });
+
+    testWidgets('builder', (tester) async {
+      final widget = TypeWriterText.builder(
+        data,
+        duration: duration,
+        builder: (context, value) => Text(value),
+        onFinished: (value) {},
+      );
+
+      await tester.pumpWidget(
+        MaterialApp(home: widget),
+      );
+      await tester.pump(duration * data.length);
+      expect(widget.onFinished != null, isTrue);
+      expect(widget.onFinished, isA<void Function(String value)>());
+      expect(find.text('Hello World'), findsOneWidget);
     });
   });
 }

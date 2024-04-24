@@ -70,3 +70,6 @@
 ## 3.0.2
 - Add assertion of text length
 - Update readme
+
+## 3.0.3
+- Add `onFinished` callback.

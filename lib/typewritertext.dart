@@ -33,11 +33,14 @@ class TypeWriterText extends StatefulWidget {
     this.maintainSize = true,
     this.repeat = false,
     this.play = true,
+    this.onFinished,
     required this.text,
     required this.duration,
   })  : _type = _TypeWriterTextType._text,
         builder = null,
-        data = '';
+        data = '',
+        assert(onFinished == null || !repeat && play,
+            'Cannot have onFinished when ${repeat ? '[repeat] is `true`.' : '[play] is `false`.'}');
 
   /// Constructor for creating a [TypeWriterText] with a custom builder function.
   ///
@@ -49,6 +52,7 @@ class TypeWriterText extends StatefulWidget {
   /// [play] determines whether the animation should start immediately (default is `true`).
   /// [duration] defines the time interval between each tick.
   /// [builder] is a function that generates the text to display based on the current tick.
+  /// [onFinished] is a callback that is called when the animation is finished.
   ///
   /// Example usage:
   /// ```dart
@@ -69,12 +73,18 @@ class TypeWriterText extends StatefulWidget {
     super.key,
     this.repeat = false,
     this.play = true,
+    this.onFinished,
     required this.duration,
     required this.builder,
   })  : _type = _TypeWriterTextType._builder,
         text = null,
         alignment = null,
-        maintainSize = false;
+        maintainSize = false,
+        assert(onFinished == null || !repeat && play,
+            'Cannot have onFinished when ${repeat ? '[repeat] is `true`.' : '[play] is `false`.'}');
+
+  /// Callback for when the animation is finished.
+  final void Function(String value)? onFinished;
 
   /// The text data to be displayed during the typewriter animation.
   final String data;
@@ -129,30 +139,39 @@ class _TypeWriterTextState extends State<TypeWriterText>
 
     if (widget.play) {
       WidgetsBinding.instance.addPostFrameCallback((timeStamp) {
-        _run();
+        _run().then((_) {
+          if (widget.onFinished != null) {
+            switch (widget._type) {
+              case _TypeWriterTextType._text:
+                widget.onFinished!(
+                  widget.text?.data?.substring(0, _tick) ?? '',
+                );
+                break;
+              case _TypeWriterTextType._builder:
+                widget.onFinished!(widget.data.substring(0, _tick));
+                break;
+            }
+          }
+        });
       });
     }
   }
 
-  void _run() {
+  Future<void> _run() async {
     if (_tick <
         (widget._type == _TypeWriterTextType._text
             ? widget.text!.data!.length
             : widget.data.length)) {
-      Future.delayed(widget.duration, () {
-        if (mounted) {
-          setState(() => _tick++);
-          _run();
-        }
-      });
+      await Future.delayed(widget.duration);
+      setState(() => _tick++);
+      await _run();
     } else {
       if (widget.repeat) {
-        Future.delayed(widget.duration, () {
-          if (mounted) {
-            setState(() => _tick = 0);
-            _run();
-          }
-        });
+        await Future.delayed(widget.duration);
+        setState(() => _tick = 0);
+        await _run();
+      } else {
+        return;
       }
     }
   }

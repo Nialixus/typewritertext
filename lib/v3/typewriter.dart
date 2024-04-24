@@ -14,6 +14,7 @@ class TypeWriter extends StatefulWidget {
   /// [controller] is the controller for the animation.
   /// [builder] is the builder for the widget.
   /// [enabled] is the flag to enable the animation or not.
+  /// [onFinished] is the callback when the animation is finished.
   ///
   /// ```dart
   /// return TypeWriter(
@@ -24,6 +25,7 @@ class TypeWriter extends StatefulWidget {
   TypeWriter({
     super.key,
     this.enabled = true,
+    this.onFinished,
     required this.controller,
     required this.builder,
   })  : text = controller!.value.data,
@@ -43,13 +45,20 @@ class TypeWriter extends StatefulWidget {
         textWidthBasis = null,
         selectionColor = null,
         maintainSize = false,
-        alignment = null;
+        alignment = null,
+        assert(
+            onFinished == null || enabled && !controller.repeat,
+            !enabled
+                ? '[enabled] must be true to use onFinished, '
+                    'otherwise you should manually await [controller.start] function.'
+                : '[repeat] must be false so that the onfinished will be triggered once the animation is done.');
 
   /// Constructor for [TypeWriter.text].
   ///
   /// [text] is the text to be displayed during the typewriter animation.
   /// [enabled] is the flag to enable the animation or not.
   /// [onChanged] is the callback function for when the text is changed.
+  /// [onFinished] is the callback function for when the animation is finished.
   /// [repeat] specifies whether the animation should repeat once completed (default is `false`).
   /// [textAlign] is the alignment of the text.
   /// [style] is the style of the text.
@@ -93,12 +102,19 @@ class TypeWriter extends StatefulWidget {
     this.selectionColor,
     this.maintainSize = true,
     this.alignment,
+    this.onFinished,
     required this.duration,
   })  : text = [text],
         controller = null,
         builder = null,
         assert(alignment != null && maintainSize || alignment == null,
-            'If alignment is not null, maintainSize should be true.');
+            'If alignment is not null, maintainSize should be true.'),
+        assert(
+            onFinished == null || enabled && !repeat,
+            !enabled
+                ? '[enabled] must be true to use onFinished, '
+                    'otherwise you should manually await [controller.start] function.'
+                : '[repeat] must be false so that the onfinished will be triggered once the animation is done.');
 
   /// Specifies whether the animation should repeat once completed (default is `false`).
   final bool repeat;
@@ -126,6 +142,11 @@ class TypeWriter extends StatefulWidget {
 
   /// Builder for the widget.
   final Widget Function(BuildContext, TypeWriterValue value)? builder;
+
+  /// Callback function for when the animation is finished.
+  ///
+  /// This function only available when [enabled] is set to `true` and [repeat] is set to `false`.
+  final void Function(TypeWriterValue value)? onFinished;
 
   /// Alignment of the text.
   final TextAlign? textAlign;
@@ -170,7 +191,6 @@ class TypeWriter extends StatefulWidget {
 class _X extends State<TypeWriter> {
   //// Controller used in [TypeWriter].
   late final TypeWriterController controller;
-  late bool _autoDispose;
 
   @override
   Widget build(BuildContext context) {
@@ -232,24 +252,26 @@ class _X extends State<TypeWriter> {
   @override
   void initState() {
     super.initState();
-    if (widget.controller != null) {
-      controller = widget.controller!;
-      _autoDispose = false;
-    } else {
-      controller = TypeWriterController.fromValue(
-        TypeWriterValue(widget.text),
-        duration: widget.duration,
-        repeat: widget.repeat,
-      );
-      _autoDispose = true;
-    }
 
-    if (widget.enabled) controller.start(controller.value.index);
+    controller = widget.controller ??
+        TypeWriterController.fromValue(
+          TypeWriterValue(widget.text),
+          duration: widget.duration,
+          repeat: widget.repeat,
+        );
+
+    if (widget.enabled) {
+      WidgetsBinding.instance.addPostFrameCallback((timeStamp) {
+        controller.start(controller.value.index).then((_) {
+          if (widget.onFinished != null) widget.onFinished!(controller.value);
+        });
+      });
+    }
   }
 
   @override
   void dispose() {
-    if (_autoDispose) controller.dispose();
+    if (widget.controller == null) controller.dispose();
     super.dispose();
   }
 }

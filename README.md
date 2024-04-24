@@ -18,7 +18,7 @@ Add this line to your pubspec.yaml.
 
 ```yaml
 dependencies:
-  typewritertext: ^3.0.2
+  typewritertext: ^3.0.3
 ```
 
 ## Usage
@@ -109,6 +109,7 @@ Full documentation <a href="https://pub.dev/documentation/typewritertext/latest/
 | maintainSize    | Used to maintain the occupied size of the final text. Default value is `true`. |
 | play            | To set whether the animation should play or not. Default value is `true`. |
 | repeat          | To set whether the animation should be repeated or not. Default value is `false`. |
+| onFinished      | Is a callback that triggered when the animation is done. This requires [play] as `true` and repeat as `false`. |
 
 ### Version 3++
 | Property             | Purpose                                                      |
@@ -134,6 +135,7 @@ Full documentation <a href="https://pub.dev/documentation/typewritertext/latest/
 | textHeightBehavior   | Text height behavior of the text.                           |
 | textWidthBasis       | Text width basis of the text.                               |
 | selectionColor       | Color of the selection.                                     |
+| onFinished           | Is a callback that triggered when the animation is done. This requires [enabled] as `true` and repeat as `false`. |
 
 ## Example
 

@@ -105,7 +105,6 @@ class MyOldApp extends StatelessWidget {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 TypeWriterText(
-                  repeat: false,
                   duration: const Duration(milliseconds: 50),
                   text: Text("What is Lorem Ipsum?",
                       textAlign: TextAlign.left,
@@ -115,7 +114,6 @@ class MyOldApp extends StatelessWidget {
                   padding: const EdgeInsets.fromLTRB(0, 10, 0, 10),
                   child: TypeWriterText.builder(
                     "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. ",
-                    repeat: false,
                     duration: const Duration(milliseconds: 50),
                     builder: (context, value) {
                       return AutoSizeText(
