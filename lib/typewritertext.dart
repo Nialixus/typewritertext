@@ -139,7 +139,7 @@ class _TypeWriterTextState extends State<TypeWriterText>
 
     if (widget.play) {
       WidgetsBinding.instance.addPostFrameCallback((timeStamp) {
-        _run().then((_) {
+        _run(context).then((_) {
           if (widget.onFinished != null) {
             switch (widget._type) {
               case _TypeWriterTextType._text:
@@ -157,19 +157,21 @@ class _TypeWriterTextState extends State<TypeWriterText>
     }
   }
 
-  Future<void> _run() async {
+  Future<void> _run(BuildContext context) async {
     if (_tick <
         (widget._type == _TypeWriterTextType._text
             ? widget.text!.data!.length
             : widget.data.length)) {
       await Future.delayed(widget.duration);
+      if(!context.mounted)return;
       setState(() => _tick++);
-      await _run();
+      await _run(context);
     } else {
       if (widget.repeat) {
         await Future.delayed(widget.duration);
+        if(!context.mounted)return;
         setState(() => _tick = 0);
-        await _run();
+        await _run(context);
       } else {
         return;
       }
