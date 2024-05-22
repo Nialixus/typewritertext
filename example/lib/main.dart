@@ -1,13 +1,38 @@
+// ignore_for_file: deprecated_member_use
+
 import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flutter/material.dart';
 import 'package:typewritertext/typewritertext.dart';
+import 'package:typewritertext/v3/typewriter.dart';
 
 void main() {
-  runApp(MaterialApp(
+  runApp(
+    MaterialApp(
       title: 'Typewritertext Demo',
       debugShowCheckedModeBanner: false,
       theme: ThemeData(primarySwatch: Colors.blue),
-      home: const MyNewApp()));
+      home: Builder(
+        builder: (context) => Column(
+          mainAxisSize: MainAxisSize.max,
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            for (int i = 0; i < 2; i++)
+              TextButton(
+                onPressed: () {
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                      builder: (_) => const [MyOldApp(), MyNewApp()][i],
+                    ),
+                  );
+                },
+                child: Text(['TypeWriter v1', 'TypeWriter v3'][i]),
+              ),
+          ],
+        ),
+      ),
+    ),
+  );
 }
 
 class MyNewApp extends StatelessWidget {
@@ -17,6 +42,7 @@ class MyNewApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return SelectionArea(
       child: Scaffold(
+        appBar: AppBar(),
         body: Padding(
           padding: const EdgeInsets.all(20.0),
           child: Center(
@@ -98,6 +124,7 @@ class MyOldApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return SelectionArea(
       child: Scaffold(
+        appBar: AppBar(),
         body: Padding(
           padding: const EdgeInsets.all(20.0),
           child: Center(

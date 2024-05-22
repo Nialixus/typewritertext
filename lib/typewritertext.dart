@@ -1,12 +1,10 @@
 /// [TypeWriterText]'s library.
+// ignore_for_file: deprecated_member_use_from_same_package
+
 library typewritertext;
 
 import 'dart:async';
 import 'package:flutter/material.dart';
-
-part 'v3/typewriter_controller.dart';
-part 'v3/typewriter_value.dart';
-part 'v3/typewriter.dart';
 
 /// Enum to represent the type of [TypeWriterText].
 enum _TypeWriterTextType {
@@ -18,6 +16,14 @@ enum _TypeWriterTextType {
 }
 
 /// A simple typewriter text animation wrapper for flutter.
+///
+/// Marks this feature as deprecated.
+///
+/// You may question the rationale behind deprecating this feature.
+/// In essence, a new version has been introduced to streamline package management.
+/// The developer respectfully advises transitioning to the new version, typewriter v3.
+@Deprecated(
+    'This feature has been deprecated in favor of typewriter v3 for improved package management.')
 class TypeWriterText extends StatefulWidget {
   /// Create a wrapper widget to animate [Text] with typewriter animation.
   ///
@@ -163,13 +169,13 @@ class _TypeWriterTextState extends State<TypeWriterText>
             ? widget.text!.data!.length
             : widget.data.length)) {
       await Future.delayed(widget.duration);
-      if(!context.mounted)return;
+      if (!context.mounted) return;
       setState(() => _tick++);
       await _run(context);
     } else {
       if (widget.repeat) {
         await Future.delayed(widget.duration);
-        if(!context.mounted)return;
+        if (!context.mounted) return;
         setState(() => _tick = 0);
         await _run(context);
       } else {

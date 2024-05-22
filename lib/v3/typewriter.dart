@@ -1,4 +1,9 @@
-part of '../typewritertext.dart';
+library typewriter;
+
+import 'package:flutter/material.dart';
+
+part 'typewriter_controller.dart';
+part 'typewriter_value.dart';
 
 /// New simple typewriter animation widget.
 ///
@@ -260,7 +265,7 @@ class _X extends State<TypeWriter> {
           repeat: widget.repeat,
         );
 
-    if (widget.enabled) {
+    if (widget.enabled && mounted) {
       WidgetsBinding.instance.addPostFrameCallback((timeStamp) {
         controller.start(controller.value.index).then((_) {
           if (widget.onFinished != null) widget.onFinished!(controller.value);

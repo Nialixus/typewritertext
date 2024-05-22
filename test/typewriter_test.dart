@@ -1,6 +1,9 @@
+// ignore_for_file: deprecated_member_use_from_same_package
+
 import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:typewritertext/typewritertext.dart';
+import 'package:typewritertext/v3/typewriter.dart';
 
 void main() {
   const data = 'Hello World';
@@ -76,7 +79,7 @@ void main() {
 
   group('TypeWriterText', () {
     testWidgets('text', (WidgetTester tester) async {
-      final widget = TypeWriterText(
+      TypeWriterText widget = TypeWriterText(
         text: const Text(data),
         duration: duration,
         onFinished: (value) {},
@@ -88,14 +91,51 @@ void main() {
       expect(widget.onFinished != null, isTrue);
       expect(widget.onFinished, isA<void Function(String value)>());
       expect(find.text('Hello World'), findsOneWidget);
+
+      widget = const TypeWriterText(
+        text: Text(data),
+        play: false,
+        duration: duration,
+      );
+      await tester.pumpWidget(
+        MaterialApp(home: widget),
+      );
+      expect(widget.onFinished == null, isTrue);
+      expect(find.text('Hello World'), findsOneWidget);
+
+      expect(() async {
+        widget = TypeWriterText(
+          text: const Text(data),
+          duration: duration,
+          repeat: true,
+          onFinished: (value) {},
+        );
+
+        await tester.pumpWidget(
+          MaterialApp(home: widget),
+        );
+      }, throwsA(isA<AssertionError>()));
+
+      expect(() async {
+        widget = TypeWriterText(
+          text: const Text(data),
+          duration: duration,
+          play: false,
+          onFinished: (value) {},
+        );
+
+        await tester.pumpWidget(
+          MaterialApp(home: widget),
+        );
+      }, throwsA(isA<AssertionError>()));
     });
 
     testWidgets('builder', (tester) async {
-      final widget = TypeWriterText.builder(
+      TypeWriterText widget = TypeWriterText.builder(
         data,
         duration: duration,
-        builder: (context, value) => Text(value),
         onFinished: (value) {},
+        builder: (context, value) => Text(value),
       );
 
       await tester.pumpWidget(
@@ -105,6 +145,46 @@ void main() {
       expect(widget.onFinished != null, isTrue);
       expect(widget.onFinished, isA<void Function(String value)>());
       expect(find.text('Hello World'), findsOneWidget);
+
+      widget = TypeWriterText.builder(
+        data,
+        play: false,
+        duration: duration,
+        builder: (context, value) => Text(value),
+      );
+      await tester.pumpWidget(
+        MaterialApp(home: widget),
+      );
+      expect(widget.onFinished == null, isTrue);
+      expect(find.text('Hello World'), findsOneWidget);
+
+      expect(() async {
+        widget = TypeWriterText.builder(
+          data,
+          duration: duration,
+          repeat: true,
+          onFinished: (value) {},
+          builder: (context, value) => Text(value),
+        );
+
+        await tester.pumpWidget(
+          MaterialApp(home: widget),
+        );
+      }, throwsA(isA<AssertionError>()));
+
+      expect(() async {
+        widget = TypeWriterText.builder(
+          data,
+          duration: duration,
+          play: false,
+          onFinished: (value) {},
+          builder: (context, value) => Text(value),
+        );
+
+        await tester.pumpWidget(
+          MaterialApp(home: widget),
+        );
+      }, throwsA(isA<AssertionError>()));
     });
   });
 }

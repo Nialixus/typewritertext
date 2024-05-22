@@ -1,4 +1,4 @@
-part of '../typewritertext.dart';
+part of 'typewriter.dart';
 
 /// Controller for [TypeWriter] widget.
 ///
@@ -61,22 +61,26 @@ class TypeWriterController extends ValueNotifier<TypeWriterValue> {
 
   /// Starts the animation. [index] is the index to start from.
   Future<void> start([int? index]) async {
-    if (!_stop) {
-      await Future.delayed(duration);
-      if (index != null) {
-        value.index = index;
-      } else {
-        int index = value.index + 1;
-        if (index >= value.length && !repeat) {
-          stop();
-        } else {
+    try {
+      if (!_stop) {
+        await Future.delayed(duration);
+        if (index != null) {
           value.index = index;
+        } else {
+          int index = value.index + 1;
+          if (index >= value.length && !repeat) {
+            stop();
+          } else {
+            value.index = index;
+          }
         }
-      }
-      notifyListeners();
+        notifyListeners();
 
-      await start();
-    } else {
+        await start();
+      } else {
+        return;
+      }
+    } catch (e) {
       return;
     }
   }

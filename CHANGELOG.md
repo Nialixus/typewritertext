@@ -73,3 +73,9 @@
 
 ## 3.0.3
 - Add `onFinished` callback.
+
+## 3.0.4
+- Added `Mounted` checker for safety
+- Deprecated `TypeWriterText`
+- Split the library into `TypeWriter` (v3) and `TypeWriterText` (v1)
+- Increase Unit Test

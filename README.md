@@ -4,7 +4,9 @@
 
 # Type Writer Text
 
-<a href='https://pub.dev/packages/typewritertext'><img src='https://img.shields.io/pub/v/typewritertext.svg?logo=flutter&color=blue&style=flat-square'/></a>\
+<a href='https://pub.dev/packages/typewritertext'><img src='https://img.shields.io/pub/v/typewritertext.svg?logo=flutter&color=blue&style=flat-square'/></a>
+<a href='https://raw.githack.com/Nialixus/typewritertext/main/coverage/html/index.html'><img src='https://img.shields.io/badge/coverage-98%25-blue.svg' /></a>
+\
 \
 A simple typewriter text animation wrapper for flutter, supports iOS, Android, web, Windows, macOS, and Linux.
 
@@ -18,7 +20,7 @@ Add this line to your pubspec.yaml.
 
 ```yaml
 dependencies:
-  typewritertext: ^3.0.3
+  typewritertext: ^3.0.4
 ```
 
 ## Usage
@@ -26,38 +28,11 @@ dependencies:
 First, import the typewriter package.
 
 ```dart
-import 'package:typewritertext/typewritertext.dart';
+import 'package:typewritertext/v3/typewriter.dart';
 ```
 
 ### Version 1++
-And to make basic `TypeWriterText` just make it like this
-```dart
-const TypeWriterText(
-  text: Text('lorem ipsum dolor sit amet ...'),
-  duration: Duration(milliseconds: 50),
-);
-```
-
-Or if you want something that more customizable, use this
-
-```dart
-const TypeWriterText.builder(
-  'Lorem ipsum dolor sit amet ...',
-  duration: Duration(milliseconds: 50),
-  builder: (context, value) {
-    return AutoSizeText(
-      value,
-      maxLines: 2,
-      minFontSize: 2.0,
-    );
-  }
-);
-```
-
-### Version 3++
-Now there is new version of `TypeWriterText`, 
-where the text value that being used is not a `Text` widget but `Iterable<String>`.
-Here's the basic example of it.
+And to make basic `TypeWriter` text, just make it like this:
 
 ```dart
 TypeWriter.text(
@@ -100,18 +75,6 @@ TypeWriter(
 ## Documentation
 Full documentation <a href="https://pub.dev/documentation/typewritertext/latest/typewritertext/typewritertext-library.html">here</a>.
 
-### Version 1++
-| Property        | Purpose                                        |
-|-----------------|------------------------------------------------|
-| text            | Use widget [Text()](https://api.flutter.dev/flutter/widgets/Text-class.html). |
-| duration        | Used to determine how fast text changes.        |
-| alignment       | Align the `text` within the occupied size.      |
-| maintainSize    | Used to maintain the occupied size of the final text. Default value is `true`. |
-| play            | To set whether the animation should play or not. Default value is `true`. |
-| repeat          | To set whether the animation should be repeated or not. Default value is `false`. |
-| onFinished      | Is a callback that triggered when the animation is done. This requires [play] as `true` and repeat as `false`. |
-
-### Version 3++
 | Property             | Purpose                                                      |
 |----------------------|--------------------------------------------------------------|
 | repeat               | Specifies whether the animation should repeat once completed (default is `false`). |
