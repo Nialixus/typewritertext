@@ -79,3 +79,6 @@
 - Deprecated `TypeWriterText`
 - Split the library into `TypeWriter` (v3) and `TypeWriterText` (v1)
 - Increase Unit Test
+
+## 3.0.41
+- Fix README

@@ -20,7 +20,7 @@ Add this line to your pubspec.yaml.
 
 ```yaml
 dependencies:
-  typewritertext: ^3.0.4
+  typewritertext: ^3.0.41
 ```
 
 ## Usage
@@ -31,8 +31,7 @@ First, import the typewriter package.
 import 'package:typewritertext/v3/typewriter.dart';
 ```
 
-### Version 1++
-And to make basic `TypeWriter` text, just make it like this:
+And use it like this
 
 ```dart
 TypeWriter.text(
