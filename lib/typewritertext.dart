@@ -23,7 +23,7 @@ enum _TypeWriterTextType {
 /// In essence, a new version has been introduced to streamline package management.
 /// The developer respectfully advises transitioning to the new version, typewriter v3.
 @Deprecated(
-    'This feature has been deprecated in favor of typewriter v3 for improved package management.')
+    'This feature has been deprecated in favor of [TypeWriter] for improved package management.')
 class TypeWriterText extends StatefulWidget {
   /// Create a wrapper widget to animate [Text] with typewriter animation.
   ///
