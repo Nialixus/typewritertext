@@ -80,5 +80,5 @@
 - Split the library into `TypeWriter` (v3) and `TypeWriterText` (v1)
 - Increase Unit Test
 
-## 3.0.41
+## 3.0.5
 - Fix README
