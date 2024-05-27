@@ -1,0 +1,3 @@
+coverage/**/*.html linguist-vendored
+coverage/**/*.css linguist-vendored
+*.sh linguist-vendored
