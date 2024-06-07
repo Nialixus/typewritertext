@@ -72,7 +72,7 @@ TypeWriter(
 ```
 
 ## Documentation
-Full documentation <a href="https://pub.dev/documentation/typewritertext/latest/typewritertext/typewritertext-library.html">here</a>.
+Full documentation <a href="https://pub.dev/documentation/typewritertext/latest/typewriter/typewriter-library.html">here</a>.
 
 | Property             | Purpose                                                      |
 |----------------------|--------------------------------------------------------------|
