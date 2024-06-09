@@ -102,6 +102,17 @@ void main() {
       expect(widget.onFinished == null, isTrue);
       expect(find.text('Hello World'), findsOneWidget);
 
+      widget = const TypeWriterText(
+        text: Text(data),
+        duration: duration,
+        repeat: true,
+      );
+      await tester.pumpWidget(
+        MaterialApp(home: widget),
+      );
+      expect(widget.onFinished == null, isTrue);
+      expect(find.text('Hello World'), findsOneWidget);
+
       expect(() async {
         widget = TypeWriterText(
           text: const Text(data),
