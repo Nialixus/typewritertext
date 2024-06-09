@@ -73,7 +73,8 @@ TypeWriter(
 
 ## Documentation
 
-* TypeWriter.text
+- TypeWriter.text
+
 | Property           | Purpose                                                                                                           |
 | ------------------ | ----------------------------------------------------------------------------------------------------------------- |
 | repeat             | Specifies whether the animation should repeat once completed (default is `false`).                                |
@@ -97,14 +98,14 @@ TypeWriter(
 | selectionColor     | Color of the selection.                                                                                           |
 | onFinished         | Is a callback that triggered when the animation is done. This requires [enabled] as `true` and repeat as `false`. |
 
-* TypeWriter
-| Property           | Purpose                                                                                                           |
-| ------------------ | ----------------------------------------------------------------------------------------------------------------- |
-| controller         | Controller that manage the animation. You can use `TypeWriterController` or `TypeWriterController.fromValue`.     |
-| enabled            | Is the flag to play the animation or not.                                                                         |
-| builder            | Builder that contains `TypeWriterValue` in sequence.                                                              |
-| onFinished         | Is a callback that triggered when the animation is done. This requires [enabled] as `true` and repeat as `false`. |
+- TypeWriter
 
+| Property   | Purpose                                                                                                           |
+| ---------- | ----------------------------------------------------------------------------------------------------------------- |
+| controller | Controller that manage the animation. You can use `TypeWriterController` or `TypeWriterController.fromValue`.     |
+| enabled    | Is the flag to play the animation or not.                                                                         |
+| builder    | Builder that contains `TypeWriterValue` in sequence.                                                              |
+| onFinished | Is a callback that triggered when the animation is done. This requires [enabled] as `true` and repeat as `false`. |
 
 ## Example
 
