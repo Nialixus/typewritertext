@@ -5,7 +5,9 @@
 # Type Writer Text
 
 <a href='https://pub.dev/packages/typewritertext'><img src='https://img.shields.io/pub/v/typewritertext.svg?logo=flutter&color=blue&style=flat-square'/></a>
-<a href='https://raw.githack.com/Nialixus/typewritertext/master/coverage/index.html'><img src='https://img.shields.io/badge/coverage-98%25-blue.svg' /></a>
+<a href="https://codecov.io/gh/Nialixus/typewritertext" >
+<img src="https://codecov.io/gh/Nialixus/typewritertext/graph/badge.svg?token=T66X1R33QE"/>
+</a>
 \
 \
 A simple typewriter text animation wrapper for flutter, supports iOS, Android, web, Windows, macOS, and Linux.
