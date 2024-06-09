@@ -59,26 +59,37 @@
 - Fix Changelog
 
 ## 2.3.1-new
+
 - Remove deprecated `textScaleFactor`
 
 ## 3.0.0
+
 - Add TypeWriter v3
 
 ## 3.0.1
+
 - Calling stop before dispose
 
 ## 3.0.2
+
 - Add assertion of text length
 - Update readme
 
 ## 3.0.3
+
 - Add `onFinished` callback.
 
 ## 3.0.4
+
 - Added `Mounted` checker for safety
 - Deprecated `TypeWriterText`
 - Split the library into `TypeWriter` (v3) and `TypeWriterText` (v1)
 - Increase Unit Test
 
 ## 3.0.5
+
 - Fix README
+
+## 3.0.6
+
+- Merge library

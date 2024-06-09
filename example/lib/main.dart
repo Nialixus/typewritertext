@@ -1,9 +1,6 @@
-// ignore_for_file: deprecated_member_use
-
 import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flutter/material.dart';
 import 'package:typewritertext/typewritertext.dart';
-import 'package:typewritertext/v3/typewriter.dart';
 
 void main() {
   runApp(
@@ -11,26 +8,7 @@ void main() {
       title: 'Typewritertext Demo',
       debugShowCheckedModeBanner: false,
       theme: ThemeData(primarySwatch: Colors.blue),
-      home: Builder(
-        builder: (context) => Column(
-          mainAxisSize: MainAxisSize.max,
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            for (int i = 0; i < 2; i++)
-              TextButton(
-                onPressed: () {
-                  Navigator.push(
-                    context,
-                    MaterialPageRoute(
-                      builder: (_) => const [MyOldApp(), MyNewApp()][i],
-                    ),
-                  );
-                },
-                child: Text(['TypeWriter v1', 'TypeWriter v3'][i]),
-              ),
-          ],
-        ),
-      ),
+      home: const MyNewApp(),
     ),
   );
 }
@@ -117,47 +95,47 @@ class MyNewApp extends StatelessWidget {
   }
 }
 
-class MyOldApp extends StatelessWidget {
-  const MyOldApp({Key? key}) : super(key: key);
+// class MyOldApp extends StatelessWidget {
+//   const MyOldApp({Key? key}) : super(key: key);
 
-  @override
-  Widget build(BuildContext context) {
-    return SelectionArea(
-      child: Scaffold(
-        appBar: AppBar(),
-        body: Padding(
-          padding: const EdgeInsets.all(20.0),
-          child: Center(
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                TypeWriterText(
-                  duration: const Duration(milliseconds: 50),
-                  text: Text("What is Lorem Ipsum?",
-                      textAlign: TextAlign.left,
-                      style: Theme.of(context).textTheme.titleMedium),
-                ),
-                Padding(
-                  padding: const EdgeInsets.fromLTRB(0, 10, 0, 10),
-                  child: TypeWriterText.builder(
-                    "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. ",
-                    duration: const Duration(milliseconds: 50),
-                    builder: (context, value) {
-                      return AutoSizeText(
-                        value,
-                        maxLines: 2,
-                        minFontSize: 2.0,
-                        textAlign: TextAlign.left,
-                        style: const TextStyle(fontSize: 20.0),
-                      );
-                    },
-                  ),
-                ),
-              ],
-            ),
-          ),
-        ),
-      ),
-    );
-  }
-}
+//   @override
+//   Widget build(BuildContext context) {
+//     return SelectionArea(
+//       child: Scaffold(
+//         appBar: AppBar(),
+//         body: Padding(
+//           padding: const EdgeInsets.all(20.0),
+//           child: Center(
+//             child: Column(
+//               crossAxisAlignment: CrossAxisAlignment.start,
+//               children: [
+//                 TypeWriterText(
+//                   duration: const Duration(milliseconds: 50),
+//                   text: Text("What is Lorem Ipsum?",
+//                       textAlign: TextAlign.left,
+//                       style: Theme.of(context).textTheme.titleMedium),
+//                 ),
+//                 Padding(
+//                   padding: const EdgeInsets.fromLTRB(0, 10, 0, 10),
+//                   child: TypeWriterText.builder(
+//                     "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. ",
+//                     duration: const Duration(milliseconds: 50),
+//                     builder: (context, value) {
+//                       return AutoSizeText(
+//                         value,
+//                         maxLines: 2,
+//                         minFontSize: 2.0,
+//                         textAlign: TextAlign.left,
+//                         style: const TextStyle(fontSize: 20.0),
+//                       );
+//                     },
+//                   ),
+//                 ),
+//               ],
+//             ),
+//           ),
+//         ),
+//       ),
+//     );
+//   }
+// }

@@ -3,7 +3,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:typewritertext/typewritertext.dart';
-import 'package:typewritertext/v3/typewriter.dart';
 
 void main() {
   const data = 'Hello World';
@@ -121,6 +120,7 @@ void main() {
           text: const Text(data),
           duration: duration,
           play: false,
+          repeat: true,
           onFinished: (value) {},
         );
 

@@ -1,9 +1,4 @@
-library typewriter;
-
-import 'package:flutter/material.dart';
-
-part 'typewriter_controller.dart';
-part 'typewriter_value.dart';
+part of '../typewritertext.dart';
 
 /// New simple typewriter animation widget.
 ///

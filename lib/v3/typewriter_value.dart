@@ -1,4 +1,4 @@
-part of 'typewriter.dart';
+part of '../typewritertext.dart';
 
 /// Value used in [TypeWriterController].
 ///

@@ -1,10 +1,13 @@
 /// [TypeWriterText]'s library.
-// ignore_for_file: deprecated_member_use_from_same_package
 
 library typewritertext;
 
 import 'dart:async';
 import 'package:flutter/material.dart';
+
+part 'v3/typewriter.dart';
+part 'v3/typewriter_controller.dart';
+part 'v3/typewriter_value.dart';
 
 /// Enum to represent the type of [TypeWriterText].
 enum _TypeWriterTextType {
@@ -15,15 +18,7 @@ enum _TypeWriterTextType {
   _builder,
 }
 
-/// A simple typewriter text animation wrapper for flutter.
-///
-/// Marks this feature as deprecated.
-///
-/// You may question the rationale behind deprecating this feature.
-/// In essence, a new version has been introduced to streamline package management.
-/// The developer respectfully advises transitioning to the new version, typewriter v3.
-@Deprecated(
-    'This feature has been deprecated in favor of [TypeWriter] for improved package management.')
+/// A simple typewriter text animation wrapper for flutter.x
 class TypeWriterText extends StatefulWidget {
   /// Create a wrapper widget to animate [Text] with typewriter animation.
   ///
@@ -33,6 +28,8 @@ class TypeWriterText extends StatefulWidget {
   ///   duration: Duration(milliseconds:50),
   /// );
   ///```
+  @Deprecated(
+      'This feature has been deprecated, use [TypeWriter.text] instead.')
   const TypeWriterText({
     super.key,
     this.alignment,
@@ -74,6 +71,7 @@ class TypeWriterText extends StatefulWidget {
   ///   },
   /// );
   /// ```
+  @Deprecated('This feature has been deprecated, use [TypeWriter] instead.')
   const TypeWriterText.builder(
     this.data, {
     super.key,

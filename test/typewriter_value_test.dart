@@ -1,5 +1,5 @@
 import 'package:flutter_test/flutter_test.dart';
-import 'package:typewritertext/v3/typewriter.dart';
+import 'package:typewritertext/typewritertext.dart';
 
 void main() {
   group('TypeWriterValue', () {

@@ -20,7 +20,7 @@ Add this line to your pubspec.yaml.
 
 ```yaml
 dependencies:
-  typewritertext: ^3.0.5
+  typewritertext: ^3.0.6
 ```
 
 ## Usage
@@ -28,7 +28,7 @@ dependencies:
 First, import the typewriter package.
 
 ```dart
-import 'package:typewritertext/v3/typewriter.dart';
+import 'package:typewritertext/typewritertext.dart';
 ```
 
 And use it like this
@@ -52,8 +52,8 @@ final controller = TypeWriterController(text: 'Hello World',
 
 final valueController = TypeWriterController.fromValue(
   TypeWriterValue([
-    'First Paragraph', 
-    'Next Paragraph', 
+    'First Paragraph',
+    'Next Paragraph',
     'Last Paragraph',
   ]),
   duration: const Duration(milliseconds: 50),
@@ -66,38 +66,45 @@ TypeWriter(
       value.text,
       maxLines: 2,
       minFontSize: 2.0,
-    ); 
+    );
   }
 );
 ```
 
 ## Documentation
-Full documentation <a href="https://pub.dev/documentation/typewritertext/latest/typewriter/typewriter-library.html">here</a>.
 
-| Property             | Purpose                                                      |
-|----------------------|--------------------------------------------------------------|
-| repeat               | Specifies whether the animation should repeat once completed (default is `false`). |
-| enabled              | Is the flag to play the animation or not.                    |
-| maintainSize         | Specifies whether the size of the layout text should be maintained. |
-| duration             | Delay time between each character.                          |
-| alignment            | Alignment of the text layout.                                |
-| text                 | The text to be displayed during the typewriter animation.   |
-| controller           | Controller for the animation.                                |
-| onChanged            | Callback function for when the text is changed.             |
-| builder              | Builder for the widget.                                      |
-| textAlign            | Alignment of the text.                                       |
-| style                | Style of the text.                                          |
-| maxLines             | Maximum number of lines to be displayed.                    |
-| overflow             | Overflow behavior of the text.                              |
-| semanticsLabel       | Semantics label of the text.                                |
-| softWrap             | Specifies whether the text should break at soft line breaks.|
-| strutStyle           | Strut style of the text.                                    |
-| locale               | Locale of the text.                                         |
-| textDirection        | Text direction of the text.                                 |
-| textHeightBehavior   | Text height behavior of the text.                           |
-| textWidthBasis       | Text width basis of the text.                               |
-| selectionColor       | Color of the selection.                                     |
-| onFinished           | Is a callback that triggered when the animation is done. This requires [enabled] as `true` and repeat as `false`. |
+* TypeWriter.text
+| Property           | Purpose                                                                                                           |
+| ------------------ | ----------------------------------------------------------------------------------------------------------------- |
+| repeat             | Specifies whether the animation should repeat once completed (default is `false`).                                |
+| enabled            | Is the flag to play the animation or not.                                                                         |
+| maintainSize       | Specifies whether the size of the layout text should be maintained.                                               |
+| duration           | Delay time between each character.                                                                                |
+| alignment          | Alignment of the text layout.                                                                                     |
+| text               | The text to be displayed during the typewriter animation.                                                         |
+| onChanged          | Callback function for when the text is changed.                                                                   |
+| textAlign          | Alignment of the text.                                                                                            |
+| style              | Style of the text.                                                                                                |
+| maxLines           | Maximum number of lines to be displayed.                                                                          |
+| overflow           | Overflow behavior of the text.                                                                                    |
+| semanticsLabel     | Semantics label of the text.                                                                                      |
+| softWrap           | Specifies whether the text should break at soft line breaks.                                                      |
+| strutStyle         | Strut style of the text.                                                                                          |
+| locale             | Locale of the text.                                                                                               |
+| textDirection      | Text direction of the text.                                                                                       |
+| textHeightBehavior | Text height behavior of the text.                                                                                 |
+| textWidthBasis     | Text width basis of the text.                                                                                     |
+| selectionColor     | Color of the selection.                                                                                           |
+| onFinished         | Is a callback that triggered when the animation is done. This requires [enabled] as `true` and repeat as `false`. |
+
+* TypeWriter
+| Property           | Purpose                                                                                                           |
+| ------------------ | ----------------------------------------------------------------------------------------------------------------- |
+| controller         | Controller that manage the animation. You can use `TypeWriterController` or `TypeWriterController.fromValue`.     |
+| enabled            | Is the flag to play the animation or not.                                                                         |
+| builder            | Builder that contains `TypeWriterValue` in sequence.                                                              |
+| onFinished         | Is a callback that triggered when the animation is done. This requires [enabled] as `true` and repeat as `false`. |
+
 
 ## Example
 
