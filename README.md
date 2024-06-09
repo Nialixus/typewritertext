@@ -74,7 +74,7 @@ TypeWriter(
 
 ## Documentation
 
-- TypeWriter.text
+### TypeWriter.text
 
 | Property           | Purpose                                                                                                           |
 | ------------------ | ----------------------------------------------------------------------------------------------------------------- |
@@ -99,7 +99,7 @@ TypeWriter(
 | selectionColor     | Color of the selection.                                                                                           |
 | onFinished         | Is a callback that triggered when the animation is done. This requires [enabled] as `true` and repeat as `false`. |
 
-- TypeWriter
+### TypeWriter
 
 | Property   | Purpose                                                                                                           |
 | ---------- | ----------------------------------------------------------------------------------------------------------------- |
