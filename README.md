@@ -63,7 +63,7 @@ final valueController = TypeWriterController.fromValue(
 TypeWriter(
   controller: controller,
   builder: (context, value) {
-    return AutoSizeText(
+    return Text(
       value.text,
       maxLines: 2,
       minFontSize: 2.0,
