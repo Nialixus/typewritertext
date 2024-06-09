@@ -93,4 +93,3 @@
 ## 3.0.6
 
 - Merge library
-- Complete coverage

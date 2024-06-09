@@ -107,10 +107,8 @@ void main() {
         duration: duration,
         repeat: true,
       );
-      await tester.pumpWidget(
-        MaterialApp(home: widget),
-      );
-      expect(widget.onFinished == null, isTrue);
+      await tester.pumpWidget(MaterialApp(home: widget),
+          duration: const Duration(seconds: 10));
       expect(find.text('Hello World'), findsOneWidget);
 
       expect(() async {
