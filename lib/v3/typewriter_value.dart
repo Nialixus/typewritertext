@@ -31,8 +31,7 @@ class TypeWriterValue {
 
   /// Total length of [data].
   int get length {
-    final result = data.fold<int>(
-        0, (p, n) => p + String.fromCharCodes(n.runes.toList()).length);
+    final result = data.fold<int>(0, (p, n) => p + n.runes.toList().length);
     assert(result > 0, 'Length of text data must be greater than 0');
     return result;
   }
@@ -51,11 +50,11 @@ class TypeWriterValue {
 
     for (String item in data) {
       var index = <int>[];
-      for (int i = 0; i < item.length; i++) {
+      for (int i = 0; i < item.runes.length; i++) {
         index.add(current + i);
       }
       indexes.add(index);
-      current = current + item.length;
+      current = current + item.runes.length;
     }
 
     return indexes;
@@ -68,7 +67,7 @@ class TypeWriterValue {
         input: data.join(),
         start:
             (index < 0 ? _indexes.last.first : _indexes[index].first) % length,
-        end: this.index);
+        end: this.index + 1);
   }
 
   String runeSubstring(
