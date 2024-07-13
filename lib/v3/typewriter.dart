@@ -231,7 +231,7 @@ class _X extends State<TypeWriter> {
                   key: widget.key,
                   locale: widget.locale,
                   maxLines: widget.maxLines,
-                  overflow: widget.overflow,
+                  overflow: widget.overflow ?? TextOverflow.visible,
                   semanticsLabel: widget.semanticsLabel,
                   softWrap: widget.softWrap,
                   strutStyle: widget.strutStyle,
@@ -260,7 +260,7 @@ class _X extends State<TypeWriter> {
           repeat: widget.repeat,
         );
 
-    if (widget.enabled && mounted) {
+    if (widget.enabled && mounted && controller._autorun) {
       WidgetsBinding.instance.addPostFrameCallback((timeStamp) {
         controller.start(controller.value.index).then((_) {
           if (widget.onFinished != null) widget.onFinished!(controller.value);

@@ -16,8 +16,10 @@ void main() {
       expect(value.text, equals('the'));
       expect(
           value.toString(),
-          equals(
-              'TypeWriterValue{data: [the👑, hash, slinging, slasher], text: the, index: 2}'));
+          equals('TypeWriterValue('
+              'data: [the👑, hash, slinging, slasher], '
+              'text: the, '
+              'index: 2)'));
     });
     test('length', () {
       expect(value.length, equals(23));

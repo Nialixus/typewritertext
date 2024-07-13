@@ -23,6 +23,22 @@ class TypeWriterValue {
     int index = 0,
   }) : _index = index;
 
+  /// Add [text] to the existing [data] and returns
+  /// a new [TypeWriterValue] instance with the updated data and index.
+  ///
+  /// ```dart
+  /// final value = TypeWriterValue(['Hello ', 'World']);
+  /// final value2 = value + ' 👑'
+  /// print(value2.text); // Hello World 👑
+  /// ```
+  TypeWriterValue operator +(String text) {
+    String value = [...data, text].join();
+    return TypeWriterValue(
+      [value],
+      index: value.runes.length - 1,
+    );
+  }
+
   /// List of [String] text to be written where each item
   /// will replace the previous one based on the given [index].
   Iterable<String> data;
@@ -31,9 +47,9 @@ class TypeWriterValue {
 
   /// Total length of [data].
   int get length {
-    final result = data.fold<int>(0, (p, n) => p + n.runes.toList().length);
-    assert(result > 0, 'Length of text data must be greater than 0');
-    return result;
+    return data.fold<int>(0, (previous, current) {
+      return previous + current.runes.length;
+    });
   }
 
   /// End index of the text that want to be written.
@@ -54,7 +70,7 @@ class TypeWriterValue {
         index.add(current + i);
       }
       indexes.add(index);
-      current = current + item.runes.length;
+      current += item.runes.length;
     }
 
     return indexes;
@@ -62,21 +78,17 @@ class TypeWriterValue {
 
   /// Current displayed text based on given [index].
   String get text {
-    var index = _indexes.indexWhere((e) => e.contains(this.index));
-    return runeSubstring(
-        input: data.join(),
-        start:
-            (index < 0 ? _indexes.last.first : _indexes[index].first) % length,
-        end: this.index + 1);
-  }
-
-  String runeSubstring(
-      {required String input, required int start, required int end}) {
-    return String.fromCharCodes(input.runes.toList().sublist(start, end));
+    if (_indexes.isEmpty) return '';
+    final index = _indexes.indexWhere((e) => e.contains(this.index));
+    final start = index < 0 ? _indexes.last.first : _indexes[index].first;
+    final end = this.index + 1;
+    return String.fromCharCodes(
+      data.join().runes.toList().sublist(start % length, end),
+    );
   }
 
   @override
   String toString() {
-    return 'TypeWriterValue{data: $data, text: $text, index: $index}';
+    return 'TypeWriterValue(data: $data, text: $text, index: $index)';
   }
 }

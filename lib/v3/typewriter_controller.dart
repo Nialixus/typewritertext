@@ -15,6 +15,16 @@ part of '../typewritertext.dart';
 /// );
 /// ```
 class TypeWriterController extends ValueNotifier<TypeWriterValue> {
+  TypeWriterController.fromStream(Stream<String> stream)
+      : duration = Duration.zero,
+        repeat = false,
+        _autorun = false,
+        super(TypeWriterValue([])) {
+    stream.listen((text) {
+      value += text;
+    });
+  }
+
   /// Constructor for [TypeWriterController].
   ///
   /// [text] is the text to be written.
@@ -31,7 +41,8 @@ class TypeWriterController extends ValueNotifier<TypeWriterValue> {
     required String text,
     required this.duration,
     this.repeat = false,
-  }) : super(TypeWriterValue([text]));
+  })  : _autorun = true,
+        super(TypeWriterValue([text]));
 
   /// Constructor for [TypeWriterController].
   ///
@@ -49,7 +60,7 @@ class TypeWriterController extends ValueNotifier<TypeWriterValue> {
     super.value, {
     required this.duration,
     this.repeat = false,
-  });
+  }) : _autorun = true;
 
   /// Delay time between each character.
   final Duration duration;
@@ -59,10 +70,13 @@ class TypeWriterController extends ValueNotifier<TypeWriterValue> {
 
   bool _stop = false;
 
+  /// Specifies whether the animation should start automatically.
+  final bool _autorun;
+
   /// Starts the animation. [index] is the index to start from.
   Future<void> start([int? index]) async {
     try {
-      if (!_stop) {
+      if (!_stop && value.length > 0) {
         await Future.delayed(duration);
         if (index != null) {
           value.index = index;

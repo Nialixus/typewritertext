@@ -93,3 +93,9 @@
 ## 3.0.6
 
 - Merge library
+
+## 3.0.7
+
+- Fix text overflow clipped
+- Add `TypeWriterController.fromStream`
+- Support emoji in text
