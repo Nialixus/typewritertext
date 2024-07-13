@@ -13,7 +13,8 @@ A simple typewriter text animation wrapper for flutter, supports iOS, Android, w
 
 ## Preview
 
-![screen-capture-_1_](https://user-images.githubusercontent.com/45191605/162557654-6e98d7be-e198-4089-bc13-6b52f7e4a6e2.gif)
+<img src="https://github.com/user-attachments/assets/451d0265-dd2d-4134-807d-a02e1f17b8bb" alt="TypeWriterText Preview" width="300">
+
 
 ## Install
 
@@ -60,8 +61,14 @@ final valueController = TypeWriterController.fromValue(
   duration: const Duration(milliseconds: 50),
 );
 
+// you can also integrate the controller with Stream<String> like this one.
+
+final streamController = TypeWriterController.fromStream(
+  StreamController<String>().stream
+);
+
 TypeWriter(
-  controller: controller,
+  controller: controller, // valueController // streamController
   builder: (context, value) {
     return Text(
       value.text,
