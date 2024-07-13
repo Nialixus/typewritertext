@@ -15,6 +15,18 @@ part of '../typewritertext.dart';
 /// );
 /// ```
 class TypeWriterController extends ValueNotifier<TypeWriterValue> {
+  /// Integrate a [Stream] of [String] into the [TypeWriterController].
+  ///
+  /// ```dart
+  /// final streamer = StreamController<String>();
+  ///
+  /// streamer.add('Hello');
+  /// streamer.add('World');
+  ///
+  /// final controller = TypeWriterController.fromStream(
+  ///   streamer.stream,
+  /// );
+  /// ```
   TypeWriterController.fromStream(Stream<String> stream)
       : duration = Duration.zero,
         repeat = false,

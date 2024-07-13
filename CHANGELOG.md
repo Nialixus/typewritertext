@@ -99,3 +99,7 @@
 - Fix text overflow clipped
 - Add `TypeWriterController.fromStream`
 - Support emoji in text
+
+## 3.0.8
+
+- Add `TypeWriterController.fromStream` documentation
