@@ -138,6 +138,22 @@ void main() {
       }, throwsA(isA<AssertionError>()));
     });
 
+    // testWidgets('repeat', (WidgetTester tester) async {
+    //   expect(() async {
+    //     WidgetsFlutterBinding.ensureInitialized();
+    //     TypeWriterText widget = const TypeWriterText(
+    //       text: Text(data),
+    //       duration: duration,
+    //       repeat: true,
+    //     );
+
+    //     await tester.pumpWidget(
+    //       MaterialApp(home: widget),
+    //     );
+    //     await tester.pumpAndSettle(const Duration(seconds: 5));
+    //   }, returnsNormally);
+    // });
+
     testWidgets('builder', (tester) async {
       TypeWriterText widget = TypeWriterText.builder(
         data,

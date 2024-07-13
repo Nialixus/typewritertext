@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:typewritertext/typewritertext.dart';
 
 void main() {
+  WidgetsFlutterBinding.ensureInitialized();
   runApp(
     MaterialApp(
       title: 'Typewritertext Demo',

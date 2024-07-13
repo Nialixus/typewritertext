@@ -128,18 +128,12 @@ class TypeWriterText extends StatefulWidget {
   State<TypeWriterText> createState() => _TypeWriterTextState();
 }
 
-class _TypeWriterTextState extends State<TypeWriterText>
-    with SingleTickerProviderStateMixin {
-  late AnimationController _controller;
+class _TypeWriterTextState extends State<TypeWriterText> {
   int _tick = 0;
 
   @override
   void initState() {
     super.initState();
-    _controller = AnimationController(
-      vsync: this,
-      duration: const Duration(milliseconds: 1),
-    );
 
     if (widget.play) {
       WidgetsBinding.instance.addPostFrameCallback((timeStamp) {
@@ -162,30 +156,28 @@ class _TypeWriterTextState extends State<TypeWriterText>
   }
 
   Future<void> _run(BuildContext context) async {
-    if (_tick <
-        (widget._type == _TypeWriterTextType._text
-            ? widget.text!.data!.length
-            : widget.data.length)) {
-      await Future.delayed(widget.duration);
-      if (!context.mounted) return;
-      setState(() => _tick++);
-      await _run(context);
-    } else {
-      if (widget.repeat) {
+    try {
+      if (_tick <
+          (widget._type == _TypeWriterTextType._text
+              ? widget.text!.data!.length
+              : widget.data.length)) {
         await Future.delayed(widget.duration);
         if (!context.mounted) return;
-        setState(() => _tick = 0);
+        setState(() => _tick++);
         await _run(context);
       } else {
-        return;
+        if (widget.repeat) {
+          await Future.delayed(widget.duration);
+          if (!context.mounted) return;
+          setState(() => _tick = 0);
+          await _run(context);
+        } else {
+          return;
+        }
       }
+    } catch (e) {
+      return;
     }
-  }
-
-  @override
-  void dispose() {
-    _controller.dispose();
-    super.dispose();
   }
 
   @override
