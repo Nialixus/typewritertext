@@ -3,42 +3,6 @@ import 'dart:async';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:typewritertext/typewritertext.dart';
 
-class ChatGPTStreamMock extends Stream<String> {
-  ChatGPTStreamMock({List<String>? message}) {
-    chat(message: message);
-  }
-
-  final _controller = StreamController<String>();
-
-  @override
-  StreamSubscription<String> listen(
-    void Function(String event)? onData, {
-    Function? onError,
-    void Function()? onDone,
-    bool? cancelOnError,
-  }) {
-    return _controller.stream.listen(
-      onData,
-      onError: onError,
-      onDone: onDone,
-      cancelOnError: cancelOnError,
-    );
-  }
-
-  Future<void> chat({List<String>? message}) async {
-    int index = 0;
-    List<String> response = message ?? ["Hello World"];
-
-    if (response.isNotEmpty) _controller.add(response[index]);
-    Timer.periodic(const Duration(milliseconds: 150), (_) {
-      if (index + 1 < response.length) {
-        index += 1;
-        _controller.add(response[index]);
-      }
-    });
-  }
-}
-
 void main() {
   group('TypeWriterController', () {
     late TypeWriterController controller;
@@ -87,13 +51,16 @@ void main() {
   });
 
   group('StreamController', () {
+    late StreamController<String> streamer;
     late TypeWriterController controller;
 
     setUp(() {
-      controller = TypeWriterController.fromStream(ChatGPTStreamMock());
+      streamer = StreamController<String>();
+      controller = TypeWriterController.fromStream(streamer.stream);
     });
 
     tearDown(() {
+      streamer.close();
       controller.dispose();
     });
 
@@ -113,19 +80,25 @@ void main() {
               'Hello Wor',
               'Hello Worl',
               'Hello World',
+              'Hello World 🚀',
+              'Hello World 🚀', // The emoji length counted as 2,
             ][controller.value.index]));
 
-        expect(controller.value.index < 'Hello World'.length, isTrue);
+        expect(controller.value.index < 'Hello World 🚀'.runes.length, isTrue);
       });
 
-      await controller.start();
+      streamer.add("Hello ");
+      await Future.delayed(Duration.zero);
+      expect(controller.value.index == 'Hello '.runes.length - 1, isTrue);
+      expect(controller.value.text, equals('Hello '));
 
-      expect(controller.value.index == 'Hello World'.length - 1, isTrue);
-      expect(controller.value.text, equals('Hello World'));
-
-      await controller.resume();
-      expect(controller.value.index == 'Hello World'.length - 1, isTrue);
-      expect(controller.value.text, equals('Hello World'));
+      streamer.add("World 🚀");
+      await Future.delayed(Duration.zero);
+      expect(
+        controller.value.index == 'Hello World 🚀'.runes.length - 1,
+        isTrue,
+      );
+      expect(controller.value.text, equals('Hello World 🚀'));
     });
   });
 }

@@ -260,7 +260,7 @@ class _X extends State<TypeWriter> {
           repeat: widget.repeat,
         );
 
-    if (widget.enabled && mounted && controller._autorun) {
+    if (widget.enabled && mounted && controller.autorun) {
       WidgetsBinding.instance.addPostFrameCallback((timeStamp) {
         controller.start(controller.value.index).then((_) {
           if (widget.onFinished != null) widget.onFinished!(controller.value);

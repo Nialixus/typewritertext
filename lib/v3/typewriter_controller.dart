@@ -30,7 +30,7 @@ class TypeWriterController extends ValueNotifier<TypeWriterValue> {
   TypeWriterController.fromStream(Stream<String> stream)
       : duration = Duration.zero,
         repeat = false,
-        _autorun = false,
+        autorun = false,
         super(TypeWriterValue([])) {
     stream.listen((text) {
       value += text;
@@ -53,8 +53,8 @@ class TypeWriterController extends ValueNotifier<TypeWriterValue> {
     required String text,
     required this.duration,
     this.repeat = false,
-  })  : _autorun = true,
-        super(TypeWriterValue([text]));
+    this.autorun = true,
+  }) : super(TypeWriterValue([text]));
 
   /// Constructor for [TypeWriterController].
   ///
@@ -72,7 +72,8 @@ class TypeWriterController extends ValueNotifier<TypeWriterValue> {
     super.value, {
     required this.duration,
     this.repeat = false,
-  }) : _autorun = true;
+    this.autorun = true,
+  });
 
   /// Delay time between each character.
   final Duration duration;
@@ -83,7 +84,7 @@ class TypeWriterController extends ValueNotifier<TypeWriterValue> {
   bool _stop = false;
 
   /// Specifies whether the animation should start automatically.
-  final bool _autorun;
+  final bool autorun;
 
   /// Starts the animation. [index] is the index to start from.
   Future<void> start([int? index]) async {

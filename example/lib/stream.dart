@@ -112,10 +112,12 @@ class ChatGPTStreamExample extends Stream<String> {
         ];
 
     if (response.isNotEmpty) _controller.add(response[index]);
-    Timer.periodic(const Duration(milliseconds: 150), (_) {
+    Timer.periodic(const Duration(milliseconds: 150), (timer) {
       if (index + 1 < response.length) {
         index += 1;
         _controller.add(response[index]);
+      } else {
+        timer.cancel();
       }
     });
   }

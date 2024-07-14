@@ -103,3 +103,6 @@
 ## 3.0.8
 
 - Add `TypeWriterController.fromStream` documentation
+- Add `autorun` parameter in `TypeWriterController` and `TypeWriterController.fromValue`
+- Add try and catch in getting index
+- Now support empty string

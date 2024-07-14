@@ -54,7 +54,11 @@ class TypeWriterValue {
 
   /// End index of the text that want to be written.
   int get index {
-    return _index % length;
+    try {
+      return _index % length;
+    } catch (e) {
+      return -1;
+    }
   }
 
   /// Set new value of the end index.
