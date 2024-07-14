@@ -87,6 +87,10 @@ void main() {
         expect(controller.value.index < 'Hello World 🚀'.runes.length, isTrue);
       });
 
+      await Future.delayed(Duration.zero);
+      expect(controller.value.index == ''.runes.length - 1, isTrue);
+      expect(controller.value.text, equals(''));
+
       streamer.add("Hello ");
       await Future.delayed(Duration.zero);
       expect(controller.value.index == 'Hello '.runes.length - 1, isTrue);
