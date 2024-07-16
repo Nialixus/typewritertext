@@ -1,6 +1,9 @@
 ---
 name: Bug report
 about: Create a report to help us improve
+title: ''
+labels: bug
+assignees: Nialixus
 
 ---
 
@@ -9,23 +12,25 @@ A clear and concise description of what the bug is.
 
 **To Reproduce**
 Steps to reproduce the behavior:
-1. Go to '...'
-2. Click on '....'
-3. Scroll down to '....'
-4. See error
+1. **Setup:**
+   - Flutter version: [e.g., 2.5.3]
+   - Dart version: [e.g., 2.14.4]
+   - Device/Emulator: [e.g., iPhone 12, Pixel 4, etc.]
+   - Operating System: [e.g., iOS 14.5, Android 11]
+2. **Steps:**
+   - Go to '...'
+   - Click on '....'
+   - Scroll down to '....'
+   - See error
 
 **Expected behavior**
 A clear and concise description of what you expected to happen.
 
-**Screenshots**
-If applicable, add screenshots to help explain your problem.
+**Screenshots/Video**
+If applicable, add screenshots or a video to help explain your problem.
 
-**Flutter:**
- - version
- - channel
-
-**Dart:**
- - version
+**Flutter Doctor Output**
+Please paste the output of `flutter doctor -v` here.
 
 **Additional context**
 Add any other context about the problem here.
