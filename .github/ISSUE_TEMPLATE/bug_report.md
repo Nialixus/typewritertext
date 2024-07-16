@@ -7,10 +7,10 @@ assignees: Nialixus
 
 ---
 
-#### Describe the bug
+### Describe the bug
 A clear and concise description of what the bug is.
 
-#### To Reproduce
+### To Reproduce
 Steps to reproduce the behavior:
 1. **Setup:**
    - Flutter version: [e.g., 2.5.3]
@@ -23,14 +23,14 @@ Steps to reproduce the behavior:
    - Scroll down to '....'
    - See error
 
-#### Expected behavior
+### Expected behavior
 A clear and concise description of what you expected to happen.
 
-#### Screenshots/Video
+### Screenshots/Video
 If applicable, add screenshots or a video to help explain your problem.
 
-#### Flutter Doctor Output
+### Flutter Doctor Output
 Please paste the output of `flutter doctor -v` here.
 
-#### Additional context
+### Additional context
 Add any other context about the problem here.
