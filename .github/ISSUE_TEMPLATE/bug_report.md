@@ -27,10 +27,10 @@ Steps to reproduce the behavior:
 A clear and concise description of what you expected to happen.
 
 ### Screenshots/Video
-If applicable, add screenshots or a video to help explain your problem.
+Add screenshots or a video to help explain your problem.
 
 ### Flutter Doctor Output
 Please paste the output of `flutter doctor -v` here.
 
-### Additional context
-Add any other context about the problem here.
+### Context
+Add any other context about the problem here, including the full code for the activity/page where the issue occurs.
