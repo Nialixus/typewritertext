@@ -106,3 +106,7 @@
 - Add `autorun` parameter in `TypeWriterController` and `TypeWriterController.fromValue`
 - Add try and catch in getting index
 - Now support empty string
+
+## 3.0.9
+
+- Add try & catch in returning text

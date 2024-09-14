@@ -83,12 +83,16 @@ class TypeWriterValue {
   /// Current displayed text based on given [index].
   String get text {
     if (_indexes.isEmpty) return '';
-    final index = _indexes.indexWhere((e) => e.contains(this.index));
-    final start = index < 0 ? _indexes.last.first : _indexes[index].first;
-    final end = this.index + 1;
-    return String.fromCharCodes(
-      data.join().runes.toList().sublist(start % length, end),
-    );
+    try {
+      final index = _indexes.indexWhere((e) => e.contains(this.index));
+      final start = index < 0 ? _indexes.last.first : _indexes[index].first;
+      final end = this.index + 1;
+      return String.fromCharCodes(
+        data.join().runes.toList().sublist(start % length, end),
+      );
+    } catch (e) {
+      return '';
+    }
   }
 
   @override
